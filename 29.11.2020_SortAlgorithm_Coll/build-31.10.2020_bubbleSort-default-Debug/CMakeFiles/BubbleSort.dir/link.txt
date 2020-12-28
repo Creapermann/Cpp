@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/BubbleSort.dir/src/main.cpp.o CMakeFiles/BubbleSort.dir/src/bubbleSort.cpp.o CMakeFiles/BubbleSort.dir/tests/test1/maintest.cpp.o  -o BubbleSort  -Wl,-Bstatic -lgtest -Wl,-Bdynamic 

@@ -1,0 +1,13 @@
+/*Given two vectors of strings v1 and v2 return a sorted vector r in lexicographical order of the strings of v1 which are substrings of strings of v2.
+
+#Example 1: a1 = ["arp", "live", "strong"]
+
+a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+
+returns["arp", "live", "strong"]
+
+#Example 2: a1 = ["tarp", "mice", "bull"]
+
+a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+
+returns[]*/
