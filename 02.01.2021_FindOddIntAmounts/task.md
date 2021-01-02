@@ -10,3 +10,4 @@ findOdd([10]) ➞ 10
 Notes
 
 There will always only be one integer that appears an odd number of times.
+#
