@@ -5,7 +5,7 @@
 
 int main() {
 
-	TIntVec mainVec = { 10 };
+	TIntVec mainVec = { 10, 5, 2, 2, 5, 5 };
 
 	FindOddInt foi(mainVec);
 

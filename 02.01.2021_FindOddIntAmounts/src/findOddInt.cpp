@@ -9,7 +9,7 @@ FindOddInt::FindOddInt(const TIntVec &mainVec) {
 }
 
 
-std::set<int> FindOddInt::find(const TIntVec& mainVec) {
+std::unordered_set<int> FindOddInt::find(const TIntVec& mainVec) {
 
 	TIntVec oddAmountOfVec;
 
@@ -22,15 +22,15 @@ std::set<int> FindOddInt::find(const TIntVec& mainVec) {
 		}
 	}
 
-	//Remove duplicates by a conversion to a set
-	std::set<int> tempS(oddAmountOfVec.begin(), oddAmountOfVec.end());
+	//Remove duplicates by a conversion to a unordered_set
+	std::unordered_set<int> tempS(oddAmountOfVec.begin(), oddAmountOfVec.end());
 
 	return tempS;
 }
 
 
-void FindOddInt::print(const std::set<int>& resSet) {
-	for (auto o : resSet) {
+void FindOddInt::print(const std::unordered_set<int>& resunordered_set) {
+	for (auto o : resunordered_set) {
 		std::cout << o << " ";
 	}
 	std::cout << std::endl;
