@@ -4,18 +4,16 @@
 class Tube
 {
 public:
-	Tube(int, int);
+	Tube(int, int, int);
 
-	int tubeSize1 = 5;
-	int tubeX1 = 0;
-	int tubeX1Extension = 0;
-	int tubeY1 = 0;
 
-	int tubeSize2 = 5;
-	int tubeX2 = 0;
-	int tubeX2Extension = 0;
-	int tubeY2 = 0;
-	
-private:
-	
+	int tubeSize1;
+	int tubeX1;
+	int tubeX1Extension;
+	int tubeY1;
+
+	int tubeSize2;
+	int tubeX2;
+	int tubeX2Extension;
+	int tubeY2;
 };
