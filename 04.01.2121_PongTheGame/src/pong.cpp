@@ -5,6 +5,8 @@
 #include "pong.hpp"
 
 
+std::default_random_engine rndmGen(time(0));
+
 
 Pong::Pong() {
 	init();
@@ -62,7 +64,7 @@ void Pong::draw() {
 		for (int k = -1; k < fieldWidth + 1; k++) {           //-1 and +1 are so the first free slot stays index 0 (from left to right) and not 1
 			if (k == -1 || k == fieldWidth)                   //For the border on the left and the right
 				std::cout << "#";
-			else if (k == ballPosX && i == ballPosY)          //For the Ball
+			else if (k == ballPosX && i == int(ballPosY))          //For the Ball
 				std::cout << "O";
 			else {
 				//For the Player draw
@@ -126,7 +128,6 @@ void Pong::draw() {
 		std::cout << "#";
 	std::cout << std::endl;
 
-	std::cout << ballPosY << std::endl;
 }
 
 
@@ -190,32 +191,44 @@ void Pong::logic() {
 	else if (ballDir == ball::RIGHT)
 		ballPosX++;
 
+	
 
 
 	//Ball-Collision
-	if (ballPosX >= fieldWidth || ballPosX <= 0) {          //Border collision
+
+	if (ballPosX >= fieldWidth || ballPosX <= 0) {          //Side-Border collision (Game lose)
 		score++;
 		resetBall();
 	}
 	
 	for (int i = 0; i < playerHeight; i++) {                //Player collsion
 		//Left Player
-		if (ballPosX == playerLeftX && ballPosY == (playerLeftY + i)) {
+		if (ballPosX == playerLeftX && int(ballPosY) == (playerLeftY + i)) {
 			ballDir = ball::RIGHT;
-
 		}
 
 		//Right Player
-		if (ballPosX == playerRightX && ballPosY == (playerRightY + i)) {
+		if (ballPosX == playerRightX && int(ballPosY) == (playerRightY + i)) {
 			ballDir = ball::LEFT;
 
 		}
 	}
 
+	//Upper-Border
+	if (int(ballPosY) <= 0) {
+		std::uniform_real_distribution<double> rndmBallDownAngle(0.2, 0.5);
+		ballAngle = rndmBallDownAngle(rndmGen);
+	}
+
+	//Lower-Border
+	if (int(ballPosY) >= (fieldHeight - 1)) {
+		std::uniform_real_distribution<double> rndmBallDownAngle(-0.5, -0.2);
+		ballAngle = rndmBallDownAngle(rndmGen);
+	}
 
 
-
-
+	//Set Ball Angle
+	ballPosY += ballAngle;
 
 
 	//Won-Game
@@ -223,7 +236,7 @@ void Pong::logic() {
 		gameOver = true;
 
 	//Waiting
-	Sleep(70);
+	Sleep(20);
 }
 
 
@@ -233,11 +246,17 @@ void Pong::resetBall() {
 	ballPosX = (fieldWidth / 2);
 	ballPosY = (fieldHeight / 2);
 
-	std::default_random_engine rndmGen(time(NULL));
+	
 	std::uniform_int_distribution<int> rndmBallSpawn(0, 10);
-	std::uniform_real_distribution<double> rndmBallAngle(0.1, 0.7);
+	std::uniform_int_distribution<int> rndmStartAngleChooser(0, 10);
 
-	ballAngle = rndmBallAngle(rndmGen);
+	std::uniform_real_distribution<double> rndmBallAngle1(-0.3, -0.1);
+	std::uniform_real_distribution<double> rndmBallAngle2(0.1, 0.3);
+
+	if(rndmStartAngleChooser(rndmGen) >= 5)
+		ballAngle = rndmBallAngle1(rndmGen);
+	else
+		ballAngle = rndmBallAngle2(rndmGen);
 
 	if (rndmBallSpawn(rndmGen) >= 5)
 		ballDir = ball::LEFT;

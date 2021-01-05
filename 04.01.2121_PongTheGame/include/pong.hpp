@@ -37,14 +37,14 @@ private:
 	player PlayerRight;
 	//Ball
 	int ballPosX;
-	int ballPosY;
+	double ballPosY;
 
 	enum class ball {
 		STOP = 0, LEFT, RIGHT
 	};
 	ball ballDir;
 
-	int ballAngle;
+	double ballAngle;
 	//Score
 	int score;
 
