@@ -53,13 +53,12 @@ void Pong::draw() {
 
 	system("CLS");
 
-	//Upper row
+	//Upper Border
 	for (int i = 0; i < fieldWidth + 2; i++)
 		std::cout << "#";
 	std::cout << std::endl;
 
-
-	//Mainpart
+	
 	for (int i = 0; i < fieldHeight; i++) {
 		for (int k = -1; k < fieldWidth + 1; k++) {           //-1 and +1 are so the first free slot stays index 0 (from left to right) and not 1
 			if (k == -1 || k == fieldWidth)                   //For the border on the left and the right
@@ -75,7 +74,6 @@ void Pong::draw() {
 						std::cout << "|";
 					} 
 				}
-
 
 				//For the Score draw
 				bool isScore = false;
@@ -113,7 +111,6 @@ void Pong::draw() {
 					}
 				}
 
-
 				//For the empty field draw
 				if (isPlayer != true && isScore != true)     
 					std::cout << " "; 
@@ -122,8 +119,7 @@ void Pong::draw() {
 		std::cout << std::endl;
 	}
 
-
-	//Lower row
+	//Lower Border
 	for (int i = 0; i < fieldWidth + 2; i++)
 		std::cout << "#";
 	std::cout << std::endl;
@@ -134,7 +130,7 @@ void Pong::draw() {
 
 void Pong::input() {
 	//Player Left Movement
-	if (_kbhit()) {
+	if (_kbhit()) {                        //If the keyboard is it
 		char c = _getch();
 		switch (c) {
 			//Player Left
@@ -147,7 +143,7 @@ void Pong::input() {
 		}
 	}
 	//Player Right Movement
-	if (_kbhit()) {
+	if (_kbhit()) {                        //If the keyboard is it
 		char a = _getch();
 		switch (a) {
 				//Player Right
@@ -179,6 +175,7 @@ void Pong::logic() {
 		else if (PlayerRight == player::DOWN && playerRightY + playerHeight + 1 <= fieldHeight)
 			playerRightY++;
 
+		//Direction is set to STOP after it moves one
 		PlayerLeft = player::STOP;
 		PlayerRight = player::STOP;
 	}
@@ -193,10 +190,8 @@ void Pong::logic() {
 
 	
 
-
-	//Ball-Collision
-
-	if (ballPosX >= fieldWidth || ballPosX <= 0) {          //Side-Border collision (Game lose)
+	//Side-Border collision -> Game lose, adds the score up to one and resets the ball to the middle again
+	if (ballPosX >= fieldWidth || ballPosX <= 0) {
 		score++;
 		resetBall();
 	}
@@ -214,21 +209,22 @@ void Pong::logic() {
 		}
 	}
 
-	//Upper-Border
+
+	//Changes the fly angle if the ball collides with the Upper-Border
 	if (int(ballPosY) <= 0) {
 		std::uniform_real_distribution<double> rndmBallDownAngle(0.2, 0.5);
 		ballAngle = rndmBallDownAngle(rndmGen);
 	}
 
-	//Lower-Border
+	//Changes the fly angle if the ball collides with the Bottom-Border
 	if (int(ballPosY) >= (fieldHeight - 1)) {
-		std::uniform_real_distribution<double> rndmBallDownAngle(-0.5, -0.2);
+		std::uniform_real_distribution<double> rndmBallDownAngle(-0.5, -0.2);    
 		ballAngle = rndmBallDownAngle(rndmGen);
 	}
 
 
 	//Set Ball Angle
-	ballPosY += ballAngle;
+	ballPosY += ballAngle;    //Applys the angle to the ball
 
 
 	//Won-Game
@@ -236,29 +232,33 @@ void Pong::logic() {
 		gameOver = true;
 
 	//Waiting
-	Sleep(20);
+	Sleep(20);    //How fast the screen refreshs
 }
 
 
-
+//Resets the Ball to the position (0|0) and adds a random Angle and a random Direction to it 
 void Pong::resetBall() {
 
+	//Sets the ball position to (0|0)
 	ballPosX = (fieldWidth / 2);
 	ballPosY = (fieldHeight / 2);
 
-	
-	std::uniform_int_distribution<int> rndmBallSpawn(0, 10);
-	std::uniform_int_distribution<int> rndmStartAngleChooser(0, 10);
 
+	//chooses a angle for the start ball, 2 random angles are created so that the ball Angle cant be to flat
+	std::uniform_int_distribution<int> rndmStartAngleChooser(0, 10);
 	std::uniform_real_distribution<double> rndmBallAngle1(-0.3, -0.1);
 	std::uniform_real_distribution<double> rndmBallAngle2(0.1, 0.3);
 
-	if(rndmStartAngleChooser(rndmGen) >= 5)
+	if (rndmStartAngleChooser(rndmGen) >= 5)
 		ballAngle = rndmBallAngle1(rndmGen);
 	else
 		ballAngle = rndmBallAngle2(rndmGen);
 
-	if (rndmBallSpawn(rndmGen) >= 5)
+
+	//For the random start direction (LEFT or RIGHT)
+	std::uniform_int_distribution<int> rndmBallDir(0, 10);
+	
+	if (rndmBallDir(rndmGen) >= 5)
 		ballDir = ball::LEFT;
 	else
 		ballDir = ball::RIGHT;
