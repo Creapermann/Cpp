@@ -46,10 +46,14 @@ private:
 
 	double ballAngle;
 	//Score
-	int score;
+	int scorePlayerLeft;
+	int scorePlayerRight;
 
-	int scorePosX;
-	int scorePosY;
+	int scorePlayerLeftPosX;
+	int scorePlayerLeftPosY;
+
+	int scorePlayerRightPosX;
+	int scorePlayerRightPosY;
 	//Game
 	bool gameOver;
 };

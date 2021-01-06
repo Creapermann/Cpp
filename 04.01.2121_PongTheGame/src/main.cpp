@@ -11,8 +11,7 @@ int main() {
 		playAgain = false;
 		system("CLS");
 		Pong fb = Pong();
-		system("CLS");
-		std::cout << "Type 'rs' to restart the game!" << std::endl;
+		std::cout << "\nType 'rs' to restart the game!" << std::endl;
 		std::string r;
 		std::cin >> r;
 		if (r == "rs" || r == "RS" || r == "Rs")

@@ -21,24 +21,31 @@ Pong::Pong() {
 
 
 void Pong::init() {
+	
+	//Field
 	fieldHeight = 15;
 	fieldWidth = 40;
 
+	//Ball
 	ballPosX = (fieldWidth / 2);
 	ballPosY = (fieldHeight / 2);
 
-
+	//Player
 	playerLeftX = 1;
 	playerLeftY = (fieldHeight / 2) -1 ;
 	playerRightX = (fieldWidth - 2);
 	playerRightY = (fieldHeight / 2) - 1;
-
 	playerHeight = 3;
 
-	score = 0;
+	//Scores
+	scorePlayerLeft = 0;
+	scorePlayerRight = 0;
 
-	scorePosX = (fieldWidth / 2) - 4;
-	scorePosY = 2;
+	scorePlayerLeftPosX = (fieldWidth - 5 - 8);
+	scorePlayerLeftPosY = 2;
+	scorePlayerRightPosX = 5;
+	scorePlayerRightPosY = 2;
+
 
 	gameOver = false;
 
@@ -79,7 +86,8 @@ void Pong::draw() {
 				bool isScore = false;
 				if (isPlayer != true) {
 					for (int j = 0; j < 8; j++) {
-						if (i == scorePosY && k == scorePosX + j) {
+						//Player Left Score
+						if (i == scorePlayerLeftPosY && k == scorePlayerLeftPosX + j) {
 							isScore = true;
 							switch (j) {
 								case 0:
@@ -104,8 +112,39 @@ void Pong::draw() {
 									std::cout << " ";
 									break;
 								case 7:
-									std::cout << score;
+									std::cout << scorePlayerLeft;
 									break;
+							}
+						}
+						
+						//Player Right Score
+						if (i == scorePlayerRightPosY && k == scorePlayerRightPosX + j) {
+							isScore = true;
+							switch (j) {
+							case 0:
+								std::cout << "S";
+								break;
+							case 1:
+								std::cout << "c";
+								break;
+							case 2:
+								std::cout << "o";
+								break;
+							case 3:
+								std::cout << "r";
+								break;
+							case 4:
+								std::cout << "e";
+								break;
+							case 5:
+								std::cout << ":";
+								break;
+							case 6:
+								std::cout << " ";
+								break;
+							case 7:
+								std::cout << scorePlayerRight;
+								break;
 							}
 						}
 					}
@@ -188,14 +227,18 @@ void Pong::logic() {
 	else if (ballDir == ball::RIGHT)
 		ballPosX++;
 
-	
+
 
 	//Side-Border collision -> Game lose, adds the score up to one and resets the ball to the middle again
-	if (ballPosX >= fieldWidth || ballPosX <= 0) {
-		score++;
+	if (ballPosX <= 0) {
+		scorePlayerRight++;
 		resetBall();
 	}
-	
+	else if (ballPosX >= fieldWidth) {
+		scorePlayerLeft++;
+		resetBall();
+	}
+
 	for (int i = 0; i < playerHeight; i++) {                //Player collsion
 		//Left Player
 		if (ballPosX == playerLeftX && int(ballPosY) == (playerLeftY + i)) {
@@ -218,7 +261,7 @@ void Pong::logic() {
 
 	//Changes the fly angle if the ball collides with the Bottom-Border
 	if (int(ballPosY) >= (fieldHeight - 1)) {
-		std::uniform_real_distribution<double> rndmBallDownAngle(-0.5, -0.2);    
+		std::uniform_real_distribution<double> rndmBallDownAngle(-0.5, -0.2);
 		ballAngle = rndmBallDownAngle(rndmGen);
 	}
 
@@ -228,11 +271,18 @@ void Pong::logic() {
 
 
 	//Won-Game
-	if (score >= 10)
+	if (scorePlayerRight >= 10){
 		gameOver = true;
-
+		system("CLS");
+		std::cout << "Player Right has won!" << std::endl;
+	}
+	else if (scorePlayerLeft >= 10) {
+		gameOver = true;
+		system("CLS");
+		std::cout << "Player Left has won!" << std::endl;
+	}
 	//Waiting
-	Sleep(20);    //How fast the screen refreshs
+	Sleep(15);    //How fast the screen refreshs
 }
 
 
