@@ -1,0 +1,8 @@
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/CMakeFiles/Snake.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/extern/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/extern/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/extern/conio/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/extern/conio/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/extern/conio/CMakeFiles/conio.dir
