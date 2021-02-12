@@ -28,8 +28,10 @@
 #include "tests/testNewImage.hpp"
 
 
+
 int main(void)
 {
+	
 	GLFWwindow* window;
 
 	if (!glfwInit())    
@@ -83,6 +85,7 @@ int main(void)
 		int choosenElement = 0;
 		
 
+
 		Renderer renderer;
 
 		test::TestClearColor ccTest;
@@ -96,7 +99,6 @@ int main(void)
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
 
-			
 
 			switch (choosenElement) {
 			case 1:
@@ -118,6 +120,8 @@ int main(void)
 
 				if (ImGui::Button("Back")) {
 					choosenElement = 0;
+
+					//niTest.~NewImage();
 				}
 				
 				break;

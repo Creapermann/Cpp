@@ -8,6 +8,8 @@ public:
 	Texture(const std::string& path);
 	~Texture();
 
+	void changeTex(const std::string &path);
+
 	void bind(unsigned int slot = 0) const;
 	void unbind() const;
 

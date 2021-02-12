@@ -136,7 +136,6 @@ void Shader::setUniformMat4f(const std::string& name, const glm::mat4& matrix) {
 }
 
 
-
 int Shader::getUniformLocation(const std::string& name) {
 	if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
 		return m_UniformLocationCache[name];
