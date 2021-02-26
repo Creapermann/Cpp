@@ -120,6 +120,39 @@ void LinkedList::deleteNode(int index)
 	}
 }
 
+void LinkedList::reverse()
+{
+	Node* currNode = headNode->nextNodePtr;
+	Node* prevNode = headNode;
+
+	//This works by first taking the head Node as "prevNode" and the Node after the head Node as "currNode"
+	//First you create a temp variable to store the memory adress of the next after "currNode" Node (here the 3rd node) cause you
+	//gonna change the "currNode" (here the 2nd Node) to point to the new "headNode" (here the 1st Node).
+	//After you saved the next Node in a temp variable, you set the pointer of "currNode" (the 2nd Node)
+	//To point to the "prevNode" (the first Node). At The end of the for loop, you set the "prevNode" to be the
+	//"currNode" and the "currNode" to the temp variable where you saved the nextNodePtr of the "currNode" at the beginning.
+	//So you start with: 1 -> 2 and after you change the pointers to 1 <- 2 and you increase to 3 -> 4 and it repeats
+	for(int i = 0; i < size - 2; i++){
+		//stores what the current note pointed to before, cause the pointer gets changed
+		Node* tmp = currNode->nextNodePtr;
+
+		//sets the new headNode pointer to a nullptr cause it head a pointer before
+		//the new headNode is the last Node from before the reversion 
+		if (i == 0)
+			prevNode->nextNodePtr = nullptr;
+		//changes the pointer of the current Node to the previous Node
+		currNode->nextNodePtr = prevNode;
+
+		//(Does the iteration) sets the Nodes to the next couple of Nodes to get reversed
+		prevNode = currNode;
+		currNode = tmp;
+	}
+	//The head
+	currNode->nextNodePtr = prevNode;
+	//
+	headNode = currNode;
+}
+
 void LinkedList::print() const
 {
 	//prints all Nodes in the linkedlist
