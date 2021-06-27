@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/lib/src/main.cpp
+iostream
+-
+random
+-
+ctime
+-
+vector
+-
+conio.h
+-
+Windows.h
+-
+
