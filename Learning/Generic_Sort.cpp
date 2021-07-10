@@ -7,13 +7,14 @@
 #include <random>
 #include <ctime>
 
-
-bool isLower(int a, int b)
+template<typename T>
+bool isLower(T a, T b)
 {
     return a < b;
 }
 
-bool isGreater(int a, int b)
+template<typename T>
+bool isGreater(T a, T b)
 {
     return a > b;
 }
@@ -24,7 +25,7 @@ void sort(std::array<T, Size>& arr, bool (*compare)(T, T))
 {
     for (int i = 0; i < arr.size() - 1; i++)
     {
-        auto lowest{i};
+        auto lowest{ i };
 
         for (int k = i + 1; k < arr.size(); k++)
         {
@@ -44,11 +45,11 @@ void sort(std::array<T, Size>& arr, bool (*compare)(T, T))
 
 int main()
 {
-    std::array<int, 8> testArr{9, 2, 7, 6, 3, 5, 5, 8};
+    std::array<double, 8> testArr{ 9.7, 2.1, 7.3, 6.9, 3.3, 5.0, 5.6, 8.8 };
 
-    sort(testArr, isGreater);
+    sort(testArr, isLower);
 
-    for (int i : testArr)
+    for (auto i : testArr)
     {
         std::cout << i << " ";
     }
