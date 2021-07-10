@@ -21,7 +21,7 @@ bool isGreater(T a, T b)
 
 
 template<typename T, int Size>
-void sort(std::array<T, Size>& arr, bool (*compare)(T, T))
+void sort(std::array<T, Size>& arr, bool (*compare)(T, T) = isLower)
 {
     for (int i = 0; i < arr.size() - 1; i++)
     {
