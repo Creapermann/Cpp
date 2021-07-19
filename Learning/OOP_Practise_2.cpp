@@ -1,7 +1,6 @@
 ﻿#include <cassert>
 #include <iostream>
 #include <string>
-#include <vector>
 
 
 class Human
@@ -34,10 +33,11 @@ public:
 	Human& operator++(int);
 	void operator+(Human& obj);
 	void operator-(Human& obj);
-	
 	operator std::string();
-
 	friend std::ostream& operator<<(std::ostream& out, const Human& obj);
+
+	// Member-functions
+	void printAllKids();
 };
 
 
@@ -113,20 +113,82 @@ Human& Human::operator=(const Human& obj)
 
 Human& Human::operator()(Human& obj)
 {
-	++m_kidsAmount;
+	if (m_kidsAmount != 0)
+	{
+		// Copy kids in a temp variable
+		auto tempKids = new Human[m_kidsAmount];
+		for (int i = 0; i < m_kidsAmount; i++)
+		{
+			*(tempKids + i) = *(m_kids + i);
+		}
 
-	delete[] m_kids;
-	m_kids = new Human[m_kidsAmount];
+		// Delete old kids
+		delete[] m_kids;
 
-	*(m_kids + m_kidsAmount - 1) = obj;
+
+		// Add count up by one
+		++m_kidsAmount;
+
+
+		// Add them to new location
+		m_kids = new Human[m_kidsAmount];
+		for (int i = 0; i < m_kidsAmount - 1; i++)
+		{
+			*(m_kids + i) = *(tempKids + i);
+		}
+
+		// Add the new kid
+		*(m_kids + m_kidsAmount - 1) = obj;
+	}
+	else
+	{
+		// Add count up by one
+		++m_kidsAmount;
+
+		// Allocate array and add new kid
+		m_kids = new Human[m_kidsAmount];
+		*(m_kids + m_kidsAmount - 1) = obj;
+	}
 
 
 	if (m_isMarried)
 	{
-		++m_partner->m_kidsAmount;
-		delete[] m_partner->m_kids;
-		m_partner->m_kids = new Human[m_partner->m_kidsAmount];
-		*(m_partner->m_kids + m_partner->m_kidsAmount - 1) = obj;
+		if (m_partner->m_kidsAmount != 0)
+		{
+			// Copy kids in a temp variable
+			auto tempKids = new Human[m_partner->m_kidsAmount];
+			for (int i = 0; i < m_partner->m_kidsAmount; i++)
+			{
+				*(tempKids + i) = *(m_partner->m_kids + i);
+			}
+
+			// Delete old kids
+			delete[] m_partner->m_kids;
+
+
+			// Add count up by one
+			++m_partner->m_kidsAmount;
+
+
+			// Add them to new location
+			m_partner->m_kids = new Human[m_partner->m_kidsAmount];
+			for (int i = 0; i < m_partner->m_kidsAmount - 1; i++)
+			{
+				*(m_partner->m_kids + i) = *(tempKids + i);
+			}
+
+			// Add the new kid at the end
+			*(m_partner->m_kids + m_partner->m_kidsAmount - 1) = obj;
+		}
+		else
+		{
+			// Add count up by one
+			++m_kidsAmount;
+
+			// Allocate array and add new kid
+			m_partner->m_kids = new Human[m_partner->m_kidsAmount];
+			*(m_partner->m_kids + m_partner->m_kidsAmount - 1) = obj;
+		}
 	}
 
 	return *this;
@@ -178,6 +240,17 @@ Human::operator std::string()
 	return m_firstname + " " + m_lastname;
 }
 
+void Human::printAllKids()
+{
+	if (m_kids == nullptr)
+		return;
+
+	for (int i = 0; i < m_kidsAmount; i++)
+	{
+		std::cout << (m_kids + i)->m_firstname << " " << (m_kids + i)->m_lastname << (!(i == m_kidsAmount - 1) ? ", " : "");
+	}
+}
+
 
 std::ostream& operator<<(std::ostream& out, const Human& obj)
 {
@@ -196,28 +269,40 @@ int main()
 	Human second("Human2", "Ramsy", 19);
 
 	// Create a kid
-	Human kid2("Kid1", "Johnson", 4);
+	Human kid1("Kid1", "Johnson", 4);
 	// Add tge kid to human 2
-	second(kid2);
+	second(kid1);
 
 	// marray human1 and human2
 	first + second;
 
 	// Create a kid
-	Human kid1("Kid2", "Jhonsy", 1);
-	// Add tge kid to human 1
-	first(kid1);
+	Human kid2("Kid2", "Jhonsy", 1);
+	// Add the kid to human 1
+	first(kid2);
 
 	// divorce human1 and human2
 	first - second;
 
 	// Create a kid
-	Human kid3("Kid2", "Jhonsy", 1);
+	Human kid3("Kid3", "Jhonsy", 1);
 	// Add tge kid to human 1
 	first(kid3);
 
+	// Create a kid
+	Human kid4("Kid4", "Ramsy", 1);
+	// Add tge kid to human 1
+	second(kid4);
+
 	// Increasing human1's age
 	++first;
+
+	// Print all kids
+	second.printAllKids();
+	std::cout << "\n";
+	std::cout << "\n";
+	std::cout << "\n";
+
 
 	// Printing
 	std::cout << first << "\n";
@@ -227,4 +312,6 @@ int main()
 	std::cout << "\n";
 	// Type conversion
 	std::cout << static_cast<std::string>(first);
+
+	std::cin.get();
 }
