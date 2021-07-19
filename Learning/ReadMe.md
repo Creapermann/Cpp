@@ -1,1 +1,1 @@
-Collection of small programs i write to practise new learned or recently refreshed stuff
+A collection of small programs i write to apply new learned or recently refreshed knowledge
