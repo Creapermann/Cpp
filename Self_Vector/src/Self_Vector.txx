@@ -45,12 +45,22 @@ T& Self_Vector<T>::operator[](std::size_t index)
 	return m_array[index];
 }
 
+template<class T>
+void Self_Vector<T>::operator=(Self_Vector<T>& toCopy)
+{
+	m_capacity = toCopy.m_capacity;
+	m_size = toCopy.m_size;
+
+	m_array = new T[toCopy.m_capacity];
+	memcpy(m_array, toCopy.m_array, sizeof(T) * toCopy.m_size);
+}
+
 
 
 
 // Member-Functions
 template<typename T>
-void Self_Vector<T>::pushback(T element)
+void Self_Vector<T>::pushback(T elem)
 {
 	// If the array capacity would be smaller than the current siez + the new object, create a bigger array
 	if (m_capacity < m_size + 1)
@@ -74,7 +84,7 @@ void Self_Vector<T>::pushback(T element)
 
 	// Add an element to the end
 	++m_size;
-	m_array[m_size - 1] = element;
+	m_array[m_size - 1] = elem;
 }
 
 
@@ -129,6 +139,13 @@ void Self_Vector<T>::sort(bool (*func)(T& first, T& second))
 
 
 template<class T>
+void Self_Vector<T>::reverse()
+{
+	std::reverse(m_array, m_array + m_size);
+}
+
+
+template<class T>
 bool Self_Vector<T>::binarySearch(T* arr, std::size_t first, std::size_t last, T element)
 {
 	std::size_t mid = (first + last) / 2;
@@ -164,7 +181,7 @@ bool Self_Vector<T>::stringSearch(std::string str)
 
 
 template<typename T>
-bool Self_Vector<T>::contains(T element)
+bool Self_Vector<T>::contains(T elem)
 {
 	T* arr = new T[m_size];
 
@@ -175,15 +192,36 @@ bool Self_Vector<T>::contains(T element)
 
 	std::sort(arr, arr + m_size);
 
-	return binarySearch(arr, 0, m_size - 1, element);
+	return binarySearch(arr, 0, m_size - 1, elem);
 }
+
 
 template<>
-bool Self_Vector<std::string>::contains(std::string element)
+bool Self_Vector<std::string>::contains(std::string elem)
 {
-	return stringSearch(element);
+	return stringSearch(elem);
 }
 
+
+template<class T>
+void Self_Vector<T>::insert(std::size_t index, T elem)
+{
+	T* tempArray = new T[m_size + 1];
+	for (int i = 0; i < index; i++)
+	{
+		tempArray[i] = m_array[i];
+	}
+
+	tempArray[index] = elem;
+
+	for (int i = index; i < m_size; i++)
+	{
+		tempArray[i + 1] = m_array[i];
+	}
+
+	delete[] m_array;
+	m_array = tempArray;
+}
 
 
 

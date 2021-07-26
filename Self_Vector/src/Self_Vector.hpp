@@ -13,7 +13,7 @@ class Self_Vector final
 private:
 	std::size_t m_size{};
 	std::size_t m_capacity{};
-	T* m_array;
+	T* m_array{ nullptr };
 
 	bool binarySearch(T* arr, std::size_t first, std::size_t last, T element);
 	bool stringSearch(std::string str);
@@ -22,8 +22,9 @@ public:
 	// Constructors
 	Self_Vector() = default;
 	Self_Vector(std::initializer_list<T> list);
-	Self_Vector(std::size_t cap);
+	explicit Self_Vector(std::size_t cap);
 
+	Self_Vector(Self_Vector& toCopy) = delete;
 
 
 	// Destructor
@@ -32,13 +33,15 @@ public:
 
 
 	// Member-Functions
-	void pushback(T element);
+	void pushback(T elem);
 	void popback();
 	void clear();
 	void removeAt(std::size_t index);
 	void sort(bool (*func)(T& first, T& second) = [](T& a, T& b) { return a < b; });
+	void reverse();
+	void insert(std::size_t index, T elem);
 
-	bool contains(T element);
+	bool contains(T elem);
 
 
 	T* begin();
@@ -51,6 +54,8 @@ public:
 		
 	// Operator-Overloads
 	T& operator[](std::size_t index);
+
+	void operator=(Self_Vector<T>& toCopy);
 };
 
 
