@@ -28,6 +28,16 @@ Self_Vector<T>::Self_Vector(std::size_t cap)
 
 
 
+template<class T>
+Self_Vector<T>::Self_Vector(Self_Vector& toCopy)
+	: m_capacity(toCopy.m_capacity), m_size(toCopy.m_size)
+{
+	m_array = new T[toCopy.m_capacity];
+	std::copy(toCopy.m_array, toCopy.m_array + toCopy.m_size, m_array);
+}
+
+
+
 // Destructor
 template<typename T>
 Self_Vector<T>::~Self_Vector()
@@ -52,7 +62,7 @@ void Self_Vector<T>::operator=(Self_Vector<T>& toCopy)
 	m_size = toCopy.m_size;
 
 	m_array = new T[toCopy.m_capacity];
-	memcpy(m_array, toCopy.m_array, sizeof(T) * toCopy.m_size);
+	std::copy(toCopy.m_array, toCopy.m_array + toCopy.m_size, m_array);
 }
 
 
@@ -73,7 +83,7 @@ void Self_Vector<T>::pushback(T elem)
 		// Create a new array with a bigger capacity
 		m_array = new T[m_capacity];
 
-		memcpy(m_array, tempArray, sizeof(T) * m_size);
+		std::copy(tempArray, tempArray + m_size, m_array);
 
 		delete[] tempArray;
 	}
@@ -226,7 +236,7 @@ bool Self_Vector<T>::contains(T elem)
 
 	T* arr = new T[m_size];
 
-	memcpy(arr, m_array, sizeof(T) * m_size);
+	std::copy(m_array, m_array + m_size, arr);
 
 	std::sort(arr, arr + m_size);
 

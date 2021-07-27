@@ -13,7 +13,7 @@ class Self_Vector final
 private:
 	std::size_t m_size{};
 	std::size_t m_capacity{};
-	T* m_array{ nullptr };
+	T* m_array{};
 
 	bool search(T* arr, std::size_t first, std::size_t last, T element);
 
@@ -23,7 +23,7 @@ public:
 	Self_Vector(std::initializer_list<T> list);
 	explicit Self_Vector(std::size_t cap);
 
-	Self_Vector(Self_Vector& toCopy) = delete;
+	Self_Vector(Self_Vector& toCopy);
 
 
 	// Destructor
