@@ -20,7 +20,7 @@ private:
 public:
 	// Constructors
 	Self_Vector() = default;
-	Self_Vector(const std::initializer_list<T> list);
+	Self_Vector(const std::initializer_list<T>& list);
 	explicit Self_Vector(const std::size_t cap);
 
 	Self_Vector(Self_Vector& const toCopy);
@@ -32,14 +32,22 @@ public:
 
 
 	// Member-Functions
-	void pushback(const T elem);
+	void pushback(const T& elem);
+	void pushback(T&& elem);
+
+	bool contains(T& elem) const;
+	bool contains(T&& elem) const;
+
 	void popback();
 	void clear();
 	void removeAt(const std::size_t index);
 	void sort(bool (*func)(T& first, T& second) = [](T& a, T& b) { return a < b; });
-	bool contains(T elem) const;
 	void reverse();
-	void insertAt(const std::size_t index, const T elem);
+
+	void insertAt(const std::size_t index, const T& elem);
+	void insertAt(const std::size_t index, T&& elem);
+
+	void swap(const std::size_t first, const std::size_t second);
 
 
 	T* begin() const;

@@ -4,17 +4,26 @@
 #include <vector>
 #include <string>
 #include <functional>
-
+class Test
+{
+public:
+	int a;
+	int b;
+};
 
 int main()
 {
-	Self_Vector<char> v;
+	Self_Vector<char> v{1,2,3};
 
+	char a = 'c';
 	v.pushback('a');
-	v.pushback('g');
+	v.pushback(a);
+	v.pushback('c');
+	v.pushback('d');
 
 	Self_Vector<char> v2 = v;
-	v.reverse();
+
+	v.swap(0, 1);
 
 
 	std::cout << "Content v:  ";

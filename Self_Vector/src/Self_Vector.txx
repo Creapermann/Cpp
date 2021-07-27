@@ -6,7 +6,7 @@
 
 // Constructors
 template<typename T>
-Self_Vector<T>::Self_Vector(const std::initializer_list<T> list)
+Self_Vector<T>::Self_Vector(const std::initializer_list<T>& list)
 	: m_capacity{ list.size() }, m_size{ list.size() }
 {
 	m_array = new T[m_capacity];
@@ -70,7 +70,31 @@ void Self_Vector<T>::operator=(const Self_Vector<T>& toCopy)
 
 // Member-Functions
 template<typename T>
-void Self_Vector<T>::pushback(const T elem)
+void Self_Vector<T>::pushback(const T& elem)
+{
+	// If the array capacity would be smaller than the current size + the new element, create a bigger array
+	if (m_capacity < m_size + 1)
+	{
+		T* tempArray = m_array;
+
+		// Increase the capacity
+		m_capacity += 4;
+
+		// Create a new array with a bigger capacity
+		m_array = new T[m_capacity];
+
+		std::copy(tempArray, tempArray + m_size, m_array);
+
+		delete[] tempArray;
+	}
+
+	// Add an element to the end
+	++m_size;
+	m_array[m_size - 1] = elem;
+}
+
+template<typename T>
+void Self_Vector<T>::pushback(T&& elem)
 {
 	// If the array capacity would be smaller than the current size + the new element, create a bigger array
 	if (m_capacity < m_size + 1)
@@ -164,6 +188,19 @@ void Self_Vector<T>::reverse()
 	std::reverse(m_array, m_array + m_size);
 }
 
+template<class T>
+void Self_Vector<T>::swap(const std::size_t first, const std::size_t second)
+{
+	assert(first >= 0 && first < m_size && second >= 0 && second < m_size);
+
+	if (first == second)
+		return;
+
+	T temp = m_array[first];
+	m_array[first] = m_array[second];
+	m_array[second] = temp;
+}
+
 
 
 template<class T>
@@ -229,7 +266,22 @@ bool Self_Vector<std::string>::search(std::string* arr, std::size_t first, std::
 
 
 template<typename T>
-bool Self_Vector<T>::contains(T elem) const
+bool Self_Vector<T>::contains(T& elem) const
+{
+	if (m_size <= 0)
+		return false;
+
+	T* arr = new T[m_size];
+
+	std::copy(m_array, m_array + m_size, arr);
+
+	std::sort(arr, arr + m_size);
+
+	return search(arr, 0, m_size - 1, elem);
+}
+
+template<typename T>
+bool Self_Vector<T>::contains(T&& elem) const
 {
 	if (m_size <= 0)
 		return false;
@@ -246,7 +298,43 @@ bool Self_Vector<T>::contains(T elem) const
 
 
 template<class T>
-void Self_Vector<T>::insertAt(const std::size_t index, const T elem)
+void Self_Vector<T>::insertAt(const std::size_t index, const T& elem)
+{
+	assert(index >= 0 && index <= m_size && "Out of bounds");
+
+	// Pushback instead of insert if you want to add an item to the end
+	if (index == m_size)
+	{
+		pushback(elem);
+		return;
+	}
+
+	T* tempArray = new T[m_size + 1];
+
+	// Before the index
+	for (int i = 0; i < index; i++)
+	{
+		tempArray[i] = m_array[i];
+	}
+
+	// Element to insert at index
+	tempArray[index] = elem;
+
+	// After the index
+	for (int i = index; i < m_size; i++)
+	{
+		tempArray[i + 1] = m_array[i];
+	}
+
+	++m_size;
+	++m_capacity;
+
+	delete[] m_array;
+	m_array = tempArray;
+}
+
+template<class T>
+void Self_Vector<T>::insertAt(const std::size_t index, T&& elem)
 {
 	assert(index >= 0 && index <= m_size && "Out of bounds");
 
