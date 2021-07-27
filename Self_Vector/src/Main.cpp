@@ -13,7 +13,9 @@ public:
 
 int main()
 {
-	Self_Vector<char> v{1,2,3};
+	std::vector<int> l;
+
+	Self_Vector<char> v;
 
 	char a = 'c';
 	v.pushback('a');
@@ -27,7 +29,7 @@ int main()
 
 
 	std::cout << "Content v:  ";
-	for (int i = 0; i < v.size(); i++)
+	for (std::size_t i = 0; i < v.size(); i++)
 	{
 		std::cout << v[i];
 
@@ -42,7 +44,7 @@ int main()
 
 
 	std::cout << "\n\nContent v2:  ";
-	for (int i = 0; i < v2.size(); i++)
+	for (std::size_t i = 0; i < v2.size(); i++)
 	{
 		std::cout << v2[i];
 

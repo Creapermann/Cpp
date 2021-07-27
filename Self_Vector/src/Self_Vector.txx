@@ -11,7 +11,7 @@ Self_Vector<T>::Self_Vector(const std::initializer_list<T>& list)
 {
 	m_array = new T[m_capacity];
 
-	int count{ 0 };
+	std::size_t count{ 0 };
 	for (T i : list)
 	{
 		m_array[count] = i;
@@ -151,13 +151,13 @@ void Self_Vector<T>::removeAt(const std::size_t index)
 	T* resArray = new T[m_capacity];
 
 	// Before the index
-	for (int i = 0; i < index; i++)
+	for (std::size_t i = 0; i < index; i++)
 	{
 		resArray[i] = m_array[i];
 	}
 
 	// After the index
-	for (int i = index; i < m_size - 1; i++)
+	for (std::size_t i = index; i < m_size - 1; i++)
 	{
 		resArray[i] = m_array[i + 1];
 	}
@@ -254,7 +254,7 @@ bool Self_Vector<char>::search(char* arr, std::size_t first, std::size_t last, c
 template<>
 bool Self_Vector<std::string>::search(std::string* arr, std::size_t first, std::size_t last, std::string element) const
 {
-	for (int i = 0; i < m_size; i++)
+	for (std::size_t i = 0; i < m_size; i++)
 	{
 		if (element == m_array[i])
 			return true;
@@ -312,7 +312,7 @@ void Self_Vector<T>::insertAt(const std::size_t index, const T& elem)
 	T* tempArray = new T[m_size + 1];
 
 	// Before the index
-	for (int i = 0; i < index; i++)
+	for (std::size_t i = 0; i < index; i++)
 	{
 		tempArray[i] = m_array[i];
 	}
@@ -321,7 +321,7 @@ void Self_Vector<T>::insertAt(const std::size_t index, const T& elem)
 	tempArray[index] = elem;
 
 	// After the index
-	for (int i = index; i < m_size; i++)
+	for (std::size_t i = index; i < m_size; i++)
 	{
 		tempArray[i + 1] = m_array[i];
 	}
@@ -348,7 +348,7 @@ void Self_Vector<T>::insertAt(const std::size_t index, T&& elem)
 	T* tempArray = new T[m_size + 1];
 
 	// Before the index
-	for (int i = 0; i < index; i++)
+	for (std::size_t i = 0; i < index; i++)
 	{
 		tempArray[i] = m_array[i];
 	}
@@ -357,7 +357,7 @@ void Self_Vector<T>::insertAt(const std::size_t index, T&& elem)
 	tempArray[index] = elem;
 
 	// After the index
-	for (int i = index; i < m_size; i++)
+	for (std::size_t i = index; i < m_size; i++)
 	{
 		tempArray[i + 1] = m_array[i];
 	}
