@@ -62,7 +62,7 @@ void Self_Vector<T>::operator=(Self_Vector<T>& toCopy)
 template<typename T>
 void Self_Vector<T>::pushback(T elem)
 {
-	// If the array capacity would be smaller than the current siez + the new object, create a bigger array
+	// If the array capacity would be smaller than the current size + the new element, create a bigger array
 	if (m_capacity < m_size + 1)
 	{
 		T* tempArray = m_array;
@@ -73,11 +73,7 @@ void Self_Vector<T>::pushback(T elem)
 		// Create a new array with a bigger capacity
 		m_array = new T[m_capacity];
 
-		// Fill the new (bigger) array with the values from the old array
-		for (int i = 0; i < m_size; i++)
-		{
-			m_array[i] = tempArray[i];
-		}
+		memcpy(m_array, tempArray, sizeof(T) * m_size);
 
 		delete[] tempArray;
 	}
@@ -91,17 +87,25 @@ void Self_Vector<T>::pushback(T elem)
 template<typename T>
 void Self_Vector<T>::popback()
 {
-	--m_size;
+	if(m_size > 0)
+		--m_size;
+
+	// if m_size is 0, there is nothing to pop
 }
 
 
 template<typename T>
 void Self_Vector<T>::clear()
 {
+	if (m_capacity == 0 && m_array == nullptr)
+		return;
+
+
 	m_capacity = 0;
 	m_size = 0;
 
 	delete[] m_array;
+	m_array = nullptr;
 }
 
 template<typename T>
@@ -134,6 +138,9 @@ void Self_Vector<T>::removeAt(std::size_t index)
 template <typename T>
 void Self_Vector<T>::sort(bool (*func)(T& first, T& second))
 {
+	if (m_size <= 1)
+		return;
+
 	std::sort(m_array, m_array + m_size, func);
 }
 
@@ -141,12 +148,16 @@ void Self_Vector<T>::sort(bool (*func)(T& first, T& second))
 template<class T>
 void Self_Vector<T>::reverse()
 {
+	if (m_size <= 1)
+		return;
+
 	std::reverse(m_array, m_array + m_size);
 }
 
 
+
 template<class T>
-bool Self_Vector<T>::binarySearch(T* arr, std::size_t first, std::size_t last, T element)
+bool Self_Vector<T>::search(T* arr, std::size_t first, std::size_t last, T element)
 {
 	std::size_t mid = (first + last) / 2;
 
@@ -159,20 +170,46 @@ bool Self_Vector<T>::binarySearch(T* arr, std::size_t first, std::size_t last, T
 			return false;
 
 		if (element < arr[mid])
-			return binarySearch(arr, first, mid - 1, element);
+			return search(arr, first, mid - 1, element);
 
-		return binarySearch(arr, mid + 1, last, element);
+		return search(arr, mid + 1, last, element);
 	}
 	else
 		return false;
 }
 
-template<typename T>
-bool Self_Vector<T>::stringSearch(std::string str)
+template<>
+bool Self_Vector<char>::search(char* arr, std::size_t first, std::size_t last, char element)
+{
+	// Specialisation which converts char into ints and then compares the int values of the char's instead of the char's
+
+	auto elementAsInt = static_cast<int>(element);
+
+	std::size_t mid = (first + last) / 2;
+
+	if (elementAsInt == static_cast<std::size_t>(arr[mid]))
+		return true;
+
+	if (last >= 1)
+	{
+		if (first >= m_size - 1)
+			return false;
+
+		if (elementAsInt < static_cast<std::size_t>(arr[mid]))
+			return search(arr, first, static_cast<std::size_t>(mid) - 1, elementAsInt);
+
+		return search(arr, static_cast<std::size_t>(mid) + 1, last, elementAsInt);
+	}
+	else
+		return false;
+}
+
+template<>
+bool Self_Vector<std::string>::search(std::string* arr, std::size_t first, std::size_t last, std::string element)
 {
 	for (int i = 0; i < m_size; i++)
 	{
-		if (str == m_array[i])
+		if (element == m_array[i])
 			return true;
 	}
 
@@ -180,44 +217,55 @@ bool Self_Vector<T>::stringSearch(std::string str)
 }
 
 
+
 template<typename T>
 bool Self_Vector<T>::contains(T elem)
 {
+	if (m_size <= 0)
+		return false;
+
 	T* arr = new T[m_size];
 
-	for (int i = 0; i < m_size; i++)
-	{
-		arr[i] = m_array[i];
-	}
+	memcpy(arr, m_array, sizeof(T) * m_size);
 
 	std::sort(arr, arr + m_size);
 
-	return binarySearch(arr, 0, m_size - 1, elem);
+	return search(arr, 0, m_size - 1, elem);
 }
 
-
-template<>
-bool Self_Vector<std::string>::contains(std::string elem)
-{
-	return stringSearch(elem);
-}
 
 
 template<class T>
-void Self_Vector<T>::insert(std::size_t index, T elem)
+void Self_Vector<T>::insertAt(std::size_t index, T elem)
 {
+	assert(index >= 0 && index <= m_size && "Out of bounds");
+
+	// Pushback instead of insert if you want to add an item to the end
+	if (index == m_size)
+	{
+		pushback(elem);
+		return;
+	}
+
 	T* tempArray = new T[m_size + 1];
+
+	// Before the index
 	for (int i = 0; i < index; i++)
 	{
 		tempArray[i] = m_array[i];
 	}
 
+	// Element to insert at index
 	tempArray[index] = elem;
 
+	// After the index
 	for (int i = index; i < m_size; i++)
 	{
 		tempArray[i + 1] = m_array[i];
 	}
+
+	++m_size;
+	++m_capacity;
 
 	delete[] m_array;
 	m_array = tempArray;
@@ -228,22 +276,12 @@ void Self_Vector<T>::insert(std::size_t index, T elem)
 template<typename T>
 T* Self_Vector<T>::begin()
 {
-	if (!m_array)
-	{
-		return nullptr;
-	}
-
 	return m_array;
 }
 
 template<typename T>
 T* Self_Vector<T>::end()
 {
-	if (!m_array)
-	{
-		return nullptr;
-	}
-
 	return m_array + m_size;
 }
 

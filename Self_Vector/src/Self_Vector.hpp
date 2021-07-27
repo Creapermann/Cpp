@@ -15,8 +15,7 @@ private:
 	std::size_t m_capacity{};
 	T* m_array{ nullptr };
 
-	bool binarySearch(T* arr, std::size_t first, std::size_t last, T element);
-	bool stringSearch(std::string str);
+	bool search(T* arr, std::size_t first, std::size_t last, T element);
 
 public:
 	// Constructors
@@ -38,10 +37,9 @@ public:
 	void clear();
 	void removeAt(std::size_t index);
 	void sort(bool (*func)(T& first, T& second) = [](T& a, T& b) { return a < b; });
-	void reverse();
-	void insert(std::size_t index, T elem);
-
 	bool contains(T elem);
+	void reverse();
+	void insertAt(std::size_t index, T elem);
 
 
 	T* begin();
