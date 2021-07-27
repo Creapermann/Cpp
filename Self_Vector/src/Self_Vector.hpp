@@ -32,20 +32,14 @@ public:
 
 
 	// Member-Functions
-	void pushback(const T& elem);
-	void pushback(T&& elem);
-
-	bool contains(T& elem) const;
-
+	void pushback(const T elem);
+	bool contains(const T& elem) const;
 	void popback();
 	void clear();
 	void removeAt(const std::size_t index);
 	void sort(bool (*func)(T& first, T& second) = [](T& a, T& b) { return a < b; });
 	void reverse();
-
-	void insertAt(const std::size_t index, const T& elem);
-	void insertAt(const std::size_t index, T&& elem);
-
+	void insertAt(const std::size_t index, T elem);
 	void swap(const std::size_t first, const std::size_t second);
 
 
