@@ -6,7 +6,7 @@
 
 // Constructors
 template<typename T>
-Self_Vector<T>::Self_Vector(std::initializer_list<T> list)
+Self_Vector<T>::Self_Vector(const std::initializer_list<T> list)
 	: m_capacity{ list.size() }, m_size{ list.size() }
 {
 	m_array = new T[m_capacity];
@@ -20,7 +20,7 @@ Self_Vector<T>::Self_Vector(std::initializer_list<T> list)
 }
 
 template<typename T>
-Self_Vector<T>::Self_Vector(std::size_t cap)
+Self_Vector<T>::Self_Vector(const std::size_t cap)
 	: m_capacity{ cap }
 {
 	m_array = new T[m_capacity];
@@ -29,7 +29,7 @@ Self_Vector<T>::Self_Vector(std::size_t cap)
 
 
 template<class T>
-Self_Vector<T>::Self_Vector(Self_Vector& toCopy)
+Self_Vector<T>::Self_Vector(Self_Vector& const toCopy)
 	: m_capacity(toCopy.m_capacity), m_size(toCopy.m_size)
 {
 	m_array = new T[toCopy.m_capacity];
@@ -49,14 +49,14 @@ Self_Vector<T>::~Self_Vector()
 
 // Operator-Overloads
 template<typename T>
-T& Self_Vector<T>::operator[](std::size_t index)
+T& Self_Vector<T>::operator[](const std::size_t index)
 {
 	assert(index < m_size && index >= 0 && "Out of bounds");
 	return m_array[index];
 }
 
 template<class T>
-void Self_Vector<T>::operator=(Self_Vector<T>& toCopy)
+void Self_Vector<T>::operator=(const Self_Vector<T>& toCopy)
 {
 	m_capacity = toCopy.m_capacity;
 	m_size = toCopy.m_size;
@@ -70,7 +70,7 @@ void Self_Vector<T>::operator=(Self_Vector<T>& toCopy)
 
 // Member-Functions
 template<typename T>
-void Self_Vector<T>::pushback(T elem)
+void Self_Vector<T>::pushback(const T elem)
 {
 	// If the array capacity would be smaller than the current size + the new element, create a bigger array
 	if (m_capacity < m_size + 1)
@@ -119,7 +119,7 @@ void Self_Vector<T>::clear()
 }
 
 template<typename T>
-void Self_Vector<T>::removeAt(std::size_t index)
+void Self_Vector<T>::removeAt(const std::size_t index)
 {
 	assert(index >= 0 && index < m_size && "Out of bounds");
 
@@ -167,7 +167,7 @@ void Self_Vector<T>::reverse()
 
 
 template<class T>
-bool Self_Vector<T>::search(T* arr, std::size_t first, std::size_t last, T element)
+bool Self_Vector<T>::search(T* arr, std::size_t first, std::size_t last, T element) const
 {
 	std::size_t mid = (first + last) / 2;
 
@@ -189,7 +189,7 @@ bool Self_Vector<T>::search(T* arr, std::size_t first, std::size_t last, T eleme
 }
 
 template<>
-bool Self_Vector<char>::search(char* arr, std::size_t first, std::size_t last, char element)
+bool Self_Vector<char>::search(char* arr, std::size_t first, std::size_t last, char element) const
 {
 	// Specialisation which converts char into ints and then compares the int values of the char's instead of the char's
 
@@ -215,7 +215,7 @@ bool Self_Vector<char>::search(char* arr, std::size_t first, std::size_t last, c
 }
 
 template<>
-bool Self_Vector<std::string>::search(std::string* arr, std::size_t first, std::size_t last, std::string element)
+bool Self_Vector<std::string>::search(std::string* arr, std::size_t first, std::size_t last, std::string element) const
 {
 	for (int i = 0; i < m_size; i++)
 	{
@@ -229,7 +229,7 @@ bool Self_Vector<std::string>::search(std::string* arr, std::size_t first, std::
 
 
 template<typename T>
-bool Self_Vector<T>::contains(T elem)
+bool Self_Vector<T>::contains(T elem) const
 {
 	if (m_size <= 0)
 		return false;
@@ -246,7 +246,7 @@ bool Self_Vector<T>::contains(T elem)
 
 
 template<class T>
-void Self_Vector<T>::insertAt(std::size_t index, T elem)
+void Self_Vector<T>::insertAt(const std::size_t index, const T elem)
 {
 	assert(index >= 0 && index <= m_size && "Out of bounds");
 
@@ -284,26 +284,26 @@ void Self_Vector<T>::insertAt(std::size_t index, T elem)
 
 
 template<typename T>
-T* Self_Vector<T>::begin()
+T* Self_Vector<T>::begin() const
 {
 	return m_array;
 }
 
 template<typename T>
-T* Self_Vector<T>::end()
+T* Self_Vector<T>::end() const
 {
 	return m_array + m_size;
 }
 
 template<typename T>
-std::size_t Self_Vector<T>::size()
+std::size_t Self_Vector<T>::size() const
 {
 	return m_size;
 }
 
 
 template<typename T>
-std::size_t Self_Vector<T>::capacity()
+std::size_t Self_Vector<T>::capacity() const
 {
 	return m_capacity;
 }

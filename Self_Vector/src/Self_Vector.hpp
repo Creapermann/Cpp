@@ -15,15 +15,15 @@ private:
 	std::size_t m_capacity{};
 	T* m_array{};
 
-	bool search(T* arr, std::size_t first, std::size_t last, T element);
+	bool search(T* arr, std::size_t first, std::size_t last, T element) const;
 
 public:
 	// Constructors
 	Self_Vector() = default;
-	Self_Vector(std::initializer_list<T> list);
-	explicit Self_Vector(std::size_t cap);
+	Self_Vector(const std::initializer_list<T> list);
+	explicit Self_Vector(const std::size_t cap);
 
-	Self_Vector(Self_Vector& toCopy);
+	Self_Vector(Self_Vector& const toCopy);
 
 
 	// Destructor
@@ -32,28 +32,28 @@ public:
 
 
 	// Member-Functions
-	void pushback(T elem);
+	void pushback(const T elem);
 	void popback();
 	void clear();
-	void removeAt(std::size_t index);
+	void removeAt(const std::size_t index);
 	void sort(bool (*func)(T& first, T& second) = [](T& a, T& b) { return a < b; });
-	bool contains(T elem);
+	bool contains(T elem) const;
 	void reverse();
-	void insertAt(std::size_t index, T elem);
+	void insertAt(const std::size_t index, const T elem);
 
 
-	T* begin();
-	T* end();
+	T* begin() const;
+	T* end() const;
 
-	std::size_t size();
-	std::size_t capacity();
+	std::size_t size() const;
+	std::size_t capacity() const;
 
 
 		
 	// Operator-Overloads
-	T& operator[](std::size_t index);
+	T& operator[](std::size_t const index);
 
-	void operator=(Self_Vector<T>& toCopy);
+	void operator=(const Self_Vector<T>& toCopy);
 };
 
 
