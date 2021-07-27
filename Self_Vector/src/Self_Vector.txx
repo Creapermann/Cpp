@@ -280,21 +280,6 @@ bool Self_Vector<T>::contains(T& elem) const
 	return search(arr, 0, m_size - 1, elem);
 }
 
-template<typename T>
-bool Self_Vector<T>::contains(T&& elem) const
-{
-	if (m_size <= 0)
-		return false;
-
-	T* arr = new T[m_size];
-
-	std::copy(m_array, m_array + m_size, arr);
-
-	std::sort(arr, arr + m_size);
-
-	return search(arr, 0, m_size - 1, elem);
-}
-
 
 
 template<class T>

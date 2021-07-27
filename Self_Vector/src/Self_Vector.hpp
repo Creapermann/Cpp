@@ -36,7 +36,6 @@ public:
 	void pushback(T&& elem);
 
 	bool contains(T& elem) const;
-	bool contains(T&& elem) const;
 
 	void popback();
 	void clear();
