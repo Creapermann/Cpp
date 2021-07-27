@@ -6,7 +6,7 @@
 
 // Constructors
 template<typename T>
-Self_Vector<T>::Self_Vector(const std::initializer_list<T>& list)
+Self_Vector<T>::Self_Vector(const std::initializer_list<T> list)
 	: m_capacity{ list.size() }, m_size{ list.size() }
 {
 	m_array = new T[m_capacity];

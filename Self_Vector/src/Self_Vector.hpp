@@ -20,7 +20,7 @@ private:
 public:
 	// Constructors
 	Self_Vector() = default;
-	Self_Vector(const std::initializer_list<T>& list);
+	Self_Vector(const std::initializer_list<T> list);
 	explicit Self_Vector(const std::size_t cap);
 
 	Self_Vector(Self_Vector& const toCopy);
