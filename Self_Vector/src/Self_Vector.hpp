@@ -36,11 +36,11 @@ public:
 	bool contains(const T& elem) const;
 	void popback();
 	void clear();
-	void removeAt(const std::size_t index);
-	void sort(bool (*func)(T& first, T& second) = [](T& a, T& b) { return a < b; });
+	void removeAt(std::size_t index);
+	void sort(bool (*func)(const T& first, const T& second) = [](const T& a, const T& b) { return a < b; });
 	void reverse();
-	void insertAt(const std::size_t index, T elem);
-	void swap(const std::size_t first, const std::size_t second);
+	void insertAt(std::size_t index, T elem);
+	void swap(std::size_t first, std::size_t second);
 
 
 	T* begin() const;
@@ -52,7 +52,7 @@ public:
 
 		
 	// Operator-Overloads
-	T& operator[](std::size_t const index);
+	T& operator[](std::size_t index);
 
 	void operator=(const Self_Vector<T>& toCopy);
 };

@@ -119,7 +119,7 @@ void Self_Vector<T>::clear()
 }
 
 template<typename T>
-void Self_Vector<T>::removeAt(const std::size_t index)
+void Self_Vector<T>::removeAt(std::size_t index)
 {
 	assert(index >= 0 && index < m_size && "Out of bounds");
 
@@ -146,7 +146,7 @@ void Self_Vector<T>::removeAt(const std::size_t index)
 
 
 template <typename T>
-void Self_Vector<T>::sort(bool (*func)(T& first, T& second))
+void Self_Vector<T>::sort(bool (*func)(const T& first, const T& second))
 {
 	if (m_size <= 1)
 		return;

@@ -25,8 +25,6 @@ int main()
 
 	Self_Vector<char> v2 = v;
 
-	v.swap(0, 1);
-
 
 	std::cout << "Content v:  ";
 	for (std::size_t i = 0; i < v.size(); i++)
