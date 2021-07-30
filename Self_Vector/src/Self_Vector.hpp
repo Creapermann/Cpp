@@ -24,6 +24,7 @@ public:
 	explicit Self_Vector(const std::size_t cap);
 
 	Self_Vector(Self_Vector& const toCopy);
+	Self_Vector(Self_Vector&& toCopy) noexcept;
 
 
 	// Destructor
@@ -54,7 +55,8 @@ public:
 	// Operator-Overloads
 	T& operator[](std::size_t index);
 
-	void operator=(const Self_Vector<T>& toCopy);
+	Self_Vector<T>& operator=(const Self_Vector<T>& toCopy);
+	Self_Vector<T>& operator=(Self_Vector<T>&& toCopy) noexcept;
 };
 
 

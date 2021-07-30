@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <exception>
+
 class Test
 {
 public:
@@ -11,20 +13,20 @@ public:
 	int b;
 };
 
+
 int main()
 {
 	std::vector<int> l;
 
-	Self_Vector<char> v;
+	Self_Vector<int> v;
 
-	char a = 'c';
-	v.pushback('a');
-	v.pushback(a);
-	v.pushback('c');
-	v.pushback('d');
+	v.pushback(1);
+	v.pushback(2);
+	v.pushback(3);
+	v.pushback(4);
 
-	Self_Vector<char> v2 = v;
-
+	Self_Vector<int> v2;
+	v2 = std::move(v);
 
 	std::cout << "Content v:  ";
 	for (std::size_t i = 0; i < v.size(); i++)

@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <algorithm>
+#include <iostream>
 
 
 // Constructors
@@ -34,6 +35,23 @@ Self_Vector<T>::Self_Vector(Self_Vector& const toCopy)
 {
 	m_array = new T[toCopy.m_capacity];
 	std::copy(toCopy.m_array, toCopy.m_array + toCopy.m_size, m_array);
+
+	std::cout << "Copy constructor!" << std::endl;
+}
+
+
+template<class T>
+Self_Vector<T>::Self_Vector(Self_Vector&& toCopy) noexcept
+{
+	m_capacity = toCopy.m_capacity;
+	m_size = toCopy.m_size;
+	m_array = toCopy.m_array;
+
+	toCopy.m_array = nullptr;
+	toCopy.m_size = 0;
+	toCopy.m_capacity = 0;
+
+	std::cout << "Move constructor!" << std::endl;
 }
 
 
@@ -56,13 +74,34 @@ T& Self_Vector<T>::operator[](const std::size_t index)
 }
 
 template<class T>
-void Self_Vector<T>::operator=(const Self_Vector<T>& toCopy)
+Self_Vector<T>& Self_Vector<T>::operator=(const Self_Vector<T>& toCopy)
 {
 	m_capacity = toCopy.m_capacity;
 	m_size = toCopy.m_size;
 
 	m_array = new T[toCopy.m_capacity];
 	std::copy(toCopy.m_array, toCopy.m_array + toCopy.m_size, m_array);
+
+	std::cout << "Copy assignment!" << std::endl;
+}
+
+template<class T>
+Self_Vector<T>& Self_Vector<T>::operator=(Self_Vector<T>&& toCopy) noexcept
+{
+	if (&toCopy == this)
+		return *this;
+
+	delete[] m_array;
+
+	m_capacity = toCopy.m_capacity;
+	m_size = toCopy.m_size;
+	m_array = toCopy.m_array;
+
+	toCopy.m_array = nullptr;
+	toCopy.m_size = 0;
+	toCopy.m_capacity = 0;
+
+	std::cout << "Move assignment!" << std::endl;
 }
 
 
