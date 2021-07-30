@@ -83,6 +83,8 @@ Self_Vector<T>& Self_Vector<T>::operator=(const Self_Vector<T>& toCopy)
 	std::copy(toCopy.m_array, toCopy.m_array + toCopy.m_size, m_array);
 
 	std::cout << "Copy assignment!" << std::endl;
+
+	return *this;
 }
 
 template<class T>
@@ -102,6 +104,8 @@ Self_Vector<T>& Self_Vector<T>::operator=(Self_Vector<T>&& toCopy) noexcept
 	toCopy.m_capacity = 0;
 
 	std::cout << "Move assignment!" << std::endl;
+
+	return *this;
 }
 
 
