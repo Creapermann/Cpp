@@ -33,14 +33,14 @@ public:
 
 
 	// Member-Functions
-	void pushback(const T elem);
+	void pushback(const T& elem);
 	bool contains(const T& elem) const;
 	void popback();
 	void clear();
 	void removeAt(std::size_t index);
 	void sort(bool (*func)(const T& first, const T& second) = [](const T& a, const T& b) { return a < b; });
 	void reverse();
-	void insertAt(std::size_t index, T elem);
+	void insertAt(std::size_t index, const T& elem);
 	void swap(std::size_t first, std::size_t second);
 
 

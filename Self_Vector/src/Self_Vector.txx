@@ -109,7 +109,7 @@ Self_Vector<T>& Self_Vector<T>::operator=(Self_Vector<T>&& toCopy) noexcept
 
 // Member-Functions
 template<typename T>
-void Self_Vector<T>::pushback(const T elem)
+void Self_Vector<T>::pushback(const T& elem)
 {
 	// If the array capacity would be smaller than the current size + the new element, create a bigger array
 	if (m_capacity < m_size + 1)
@@ -298,7 +298,7 @@ bool Self_Vector<T>::contains(const T& elem) const
 
 
 template<class T>
-void Self_Vector<T>::insertAt(const std::size_t index, const T elem)
+void Self_Vector<T>::insertAt(const std::size_t index, const T& elem)
 {
 	assert(index >= 0 && index <= m_size && "Out of bounds");
 
