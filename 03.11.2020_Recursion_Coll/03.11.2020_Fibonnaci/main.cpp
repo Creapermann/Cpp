@@ -1,27 +1,24 @@
 #include <iostream>
 
-#
+int fib(long long n)
+{
+    static std::unordered_map<long long, long long> map;
 
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
 
-int fib(int cnt, int term1, int term2) {
+    if (map.find(n) == map.end())
+	map.insert({n, fib(n - 1) + fib(n - 2) });
 	
-	std::cout << term1 << " ";
-
-	if (cnt <= 0) {											 //base-case
-		std::cout << term2 << " ";
-		return term1 + term2;
-	}
-	else {                                                   //recursive-case
-		return fib(cnt - 1, term2, term1 + term2);
-	}
+    return map.at(n);
 }
 
 
-int main() {
+int main()
+{
+    std::cout << fib(70) << "\n";
 
-	std::cout << fib(5, 0, 1) << std::endl;
-
-
-	std::cin.get();
-	return 0;
+    std::cin.get();
 }
