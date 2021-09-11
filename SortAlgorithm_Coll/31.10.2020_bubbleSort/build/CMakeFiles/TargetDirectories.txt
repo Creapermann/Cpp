@@ -1,0 +1,9 @@
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/CMakeFiles/rebuild_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/CMakeFiles/edit_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/CMakeFiles/BubbleSort.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/tests/CMakeFiles/rebuild_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/tests/CMakeFiles/edit_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/tests/test1/CMakeFiles/rebuild_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/tests/test1/CMakeFiles/edit_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/src/CMakeFiles/rebuild_cache.dir
+/home/creapermann/Data/Programming/Cpp/CodeFiles/29.11.2020_SortAlgorithm_Coll/31.10.2020_bubbleSort/build/src/CMakeFiles/edit_cache.dir

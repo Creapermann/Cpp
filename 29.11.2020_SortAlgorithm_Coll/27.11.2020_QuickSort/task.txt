@@ -1,3 +1,0 @@
-Task:
-
-create and learn the QuickSort algorithm!

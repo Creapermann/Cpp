@@ -1,1 +1,0 @@
-/usr/bin/g++  -g  -rdynamic CMakeFiles/testBubbleSort.dir/maintest.cpp.o CMakeFiles/testBubbleSort.dir/testFile.cpp.o  -o testBubbleSort  -Wl,-Bstatic -lgtest -Wl,-Bdynamic 
