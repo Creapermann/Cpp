@@ -1,4 +1,3 @@
-# C-
-My c++ exercises
+# C++
 
-On this github repository I am going to share projects, in the language c++, on which i worked or am still working on
+C++ project i've developed or i am still developing
