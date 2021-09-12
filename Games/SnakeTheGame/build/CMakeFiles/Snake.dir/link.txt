@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/Snake.dir/src/main.cpp.o  -o Snake   -L/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/extern/conio  -Wl,-rpath,/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/build/extern/conio:/mnt/c/Users/Creap/Data/Programming/C++/Codefiles/28.12.2020_SnakeTheGame/extern/conio extern/conio/libconio.so 

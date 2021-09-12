@@ -1,1 +1,0 @@
-/usr/bin/cc -fPIC   -shared -Wl,-soname,libconio.so -o libconio.so CMakeFiles/conio.dir/conio.c.o 
