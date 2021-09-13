@@ -39,7 +39,7 @@ template<typename T>
 Node<T>& LinkedList<T>::operator[](std::size_t index)
 {
 	if (index < 0 || index > m_size - 1)
-		throw std::out_of_range;
+		throw std::out_of_range("Out of range");
 
 	auto curr = m_root;
 	for (int i{ 0 }; i < index; ++i)
@@ -47,7 +47,7 @@ Node<T>& LinkedList<T>::operator[](std::size_t index)
 		curr = curr->next;
 	}
 
-	return curr;
+	return *curr;
 }
 
 

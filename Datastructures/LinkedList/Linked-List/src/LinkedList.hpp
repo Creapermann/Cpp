@@ -10,7 +10,7 @@ class Node
 {
 public:
     Node() = default;
-    Node(T& data)
+    Node(T data)
         : m_data{data}, next{nullptr}
     {}
 
@@ -57,6 +57,27 @@ public:
 
     class Iterator
     {
+    public:
+
+        Iterator()
+            : m_ptr{nullptr}
+        {}
+
+        Iterator(std::shared_ptr<Node<T>> ptr)
+            : m_ptr{ ptr }
+        {
+        }
+
+        T& operator*() { return m_ptr->data(); };
+        void operator++()    { if (m_ptr) { m_ptr = m_ptr->next; } else { throw std::out_of_range("Out of range"); } }
+        void operator++(int) { if (m_ptr) { m_ptr = m_ptr->next; } else { throw std::out_of_range("Out of range"); } }
+        void operator=(std::shared_ptr<Node<T>> ptr) { m_ptr = ptr; }
+
+        template<typename U>
+        void operator==(U cond) { return m_ptr == cond; }
+
+    private:
+        std::shared_ptr<Node<T>> m_ptr;
     };
 
 
