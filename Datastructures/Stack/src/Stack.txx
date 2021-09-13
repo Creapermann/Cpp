@@ -11,7 +11,7 @@ Stack<T>::Stack()
 }
 
 template<typename T>
-Stack<T>::Stack(const std::vector<T>& vec)
+Stack<T>::Stack(std::vector<T> vec)
 {
 	if (!vec.empty())
 	{

@@ -28,7 +28,7 @@ class Stack
 {
 public:
 	Stack();
-	Stack(const std::vector<T>& vec);
+	Stack(std::vector<T> vec);
 
 	std::shared_ptr<Node<T>> begin() const;
 	std::shared_ptr<Node<T>> end() const;
