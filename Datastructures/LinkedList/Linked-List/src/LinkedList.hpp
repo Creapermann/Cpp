@@ -10,7 +10,7 @@ class Node
 {
 public:
     Node() = default;
-    Node(T data)
+    Node(T& data)
         : m_data{data}, next{nullptr}
     {}
 
