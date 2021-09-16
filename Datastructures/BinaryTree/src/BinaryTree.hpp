@@ -40,7 +40,6 @@ public:
 
 	bool isStrict();
 	bool isFull();
-	bool isComplete();
 
 	void preorder_display();
 	void inorder_display();

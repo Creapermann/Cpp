@@ -248,39 +248,115 @@ bool BinaryTree<T>::isStrict()
 }
 
 
+bool isFullHelper(std::size_t nodes_to_test)
+{
+	// Pattern:
+	// full height n has height (n-1)*2 + 1 nodes
+	// full height 1 has 3 nodes
+	// 
+	// 
+	// Example:
+	// n = 4
+	// 
+	// 1*2+1  = 3
+	// 3*2+1  = 7
+	// 7*2+1  = 15
+	// 15*2+1 = 31   <--- result
+
+
+	static std::size_t curr{3};
+
+	if (curr == nodes_to_test)
+		return true;
+	else if(curr > nodes_to_test)
+		return false;
+	else
+	{
+		curr = (curr * 2) + 1;
+		isFullHelper(nodes_to_test);
+	}
+}
+
 template<typename T>
 bool BinaryTree<T>::isFull()
 {
-	return false;
+	return isFullHelper(m_nodesAmount);
 }
+
 
 
 template<typename T>
-bool BinaryTree<T>::isComplete()
+void preorder_display_helper(std::shared_ptr<Node<T>> ptr)
 {
-	return false;
+	if(ptr)
+	{
+		std::cout << ptr->data() << " ";
+		preorder_display_helper(ptr->left);
+		preorder_display_helper(ptr->right);
+	}
 }
-
 
 template<typename T>
 void BinaryTree<T>::preorder_display()
 {
+	preorder_display_helper(m_root);
 }
 
+
+
+template<typename T>
+void inorder_display_helper(std::shared_ptr<Node<T>> ptr)
+{
+	if (ptr)
+	{
+		inorder_display_helper(ptr->left);
+		std::cout << ptr->data() << " ";
+		inorder_display_helper(ptr->right);
+	}
+}
 
 template<typename T>
 void BinaryTree<T>::inorder_display()
 {
+	inorder_display_helper(m_root);
 }
 
+
+
+template<typename T>
+void postorder_display_helper(std::shared_ptr<Node<T>> ptr)
+{
+	if (ptr)
+	{
+		postorder_display_helper(ptr->left);
+		postorder_display_helper(ptr->right);
+		std::cout << ptr->data() << " ";
+	}
+}
 
 template<typename T>
 void BinaryTree<T>::postorder_display()
 {
+	postorder_display_helper(m_root);
 }
 
 
 template<typename T>
 void BinaryTree<T>::levelorder_display()
 {
+	std::queue<std::shared_ptr<Node<T>>> toVisit;
+	toVisit.push(m_root);
+
+	while (!toVisit.empty())
+	{
+		std::cout << toVisit.front()->data() << " ";
+
+		if (toVisit.front()->left)
+			toVisit.push(toVisit.front()->left);
+		
+		if (toVisit.front()->right)
+			toVisit.push(toVisit.front()->right);
+
+		toVisit.pop();
+	}
 }
