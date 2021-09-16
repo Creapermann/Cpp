@@ -15,6 +15,7 @@ Stack<T>::Stack(std::vector<T> vec)
 {
 	if (!vec.empty())
 	{
+		// Setup first element
 		std::shared_ptr<Node<T>> temp_node = std::make_shared<Node<T>>(vec[0]);
 		m_root = temp_node;
 	}
