@@ -31,6 +31,7 @@ std::size_t height_helper(const std::shared_ptr<Node<T>> ptr, const std::shared_
 		auto x = height_helper(ptr->left, root);
 		auto y = height_helper(ptr->right, root);
 
+		// Just add one so it gets to be height and not levels
 		int add{};
 		if (ptr != root)
 			add = 1;
@@ -52,6 +53,10 @@ std::size_t BinarySearchTree<T>::totalNodes() const
 }
 
 
+/// <summary>
+/// Recursivly get to the right location and insert the new Node. Dont insert anything if a
+/// Node with the same content already exists.
+/// </summary>
 template<typename T>
 std::shared_ptr<Node<T>> insert_helper(std::shared_ptr<Node<T>> ptr, const T& toInsert)
 {
@@ -91,6 +96,9 @@ enum class cessor_type
 	Successor
 };
 
+/// <summary>
+/// Check wether an node has a Successor or Predecessor and return it. If none is found, return nullptr
+/// </summary>
 template<typename T>
 std::shared_ptr<Node<T>> find_cessor(std::shared_ptr<Node<T>> ptr, cessor_type& type)
 {
@@ -125,6 +133,10 @@ std::shared_ptr<Node<T>> find_cessor(std::shared_ptr<Node<T>> ptr, cessor_type& 
 }
 
 
+/// <summary>
+/// Remove an Node and replace it with its right cessor so the right order remains. Dont do 
+/// anything if no node with the given value was found
+/// </summary>
 template<typename T>
 void BinarySearchTree<T>::remove(const T& toRemove)
 {
@@ -165,6 +177,10 @@ void BinarySearchTree<T>::remove(const T& toRemove)
 }
 
 
+
+/// <summary>
+/// Return given node. If no node with the given value exists, return nullptr
+/// </summary>
 template<typename T>
 std::shared_ptr<Node<T>> find_helper(std::shared_ptr<Node<T>> ptr, const T& toFind)
 {
@@ -190,6 +206,11 @@ std::shared_ptr<Node<T>> BinarySearchTree<T>::find(const T& toFind) const
 }
 
 
+/// <summary>
+/// Return the parent of a given node. If the a node with the given value does not exist,
+/// or is the root node, return nullptr
+/// </summary>
+/// <typeparam name="T"></typeparam>
 template<typename T>
 std::shared_ptr<Node<T>> find_parent_of_helper(std::shared_ptr<Node<T>> ptr, const T& toFind)
 {
