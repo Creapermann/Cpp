@@ -1,5 +1,5 @@
 // Notes:
-// Intentionally implemented with raw pointers for practise purpose
+// Intentionally implemented with raw pointers for practise purposes
 
 #pragma once
 
