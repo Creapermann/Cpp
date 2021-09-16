@@ -39,7 +39,8 @@ void BinaryTree<T>::createTree()
 	queue.push(m_root);
 	++m_nodesAmount;
 
-
+	
+	// Iterates level for level, children of one level get pushed into the queue and iterated over the next level 
 	while (!queue.empty())
 	{
 		system("CLS");
@@ -58,7 +59,7 @@ void BinaryTree<T>::createTree()
 				queue.push(temp_node);
 				++m_nodesAmount;
 			}
-			else
+			else    // User choosed to stop
 			{
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -77,14 +78,14 @@ void BinaryTree<T>::createTree()
 				queue.push(temp_node);
 				++m_nodesAmount;
 			}
-			else
+			else    // User choosed to stop
 			{
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			}
 		}
 
-		queue.pop();
+		queue.pop();        // Finished with element
 	}
 }
 
