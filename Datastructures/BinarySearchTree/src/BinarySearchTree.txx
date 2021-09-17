@@ -53,7 +53,7 @@ std::size_t BinarySearchTree<T>::totalNodes() const
 }
 
 template<typename T>
-std::shared_ptr<Node<T>> BinarySearchTree<T>::root()
+std::shared_ptr<Node<T>> BinarySearchTree<T>::root()const
 {
 	return m_root;
 }
@@ -92,6 +92,8 @@ void BinarySearchTree<T>::insert(const T& toInsert)
 		m_root = std::make_shared<Node<T>>(toInsert);
 	else
 		insert_helper(m_root, toInsert);
+
+	++m_nodesAmount;
 }
 
 
@@ -186,6 +188,8 @@ void BinarySearchTree<T>::remove(const T& toRemove)
 			toRemPtr = cessor;                     // Set the target to remove to cessor
 		}
 	}
+
+	--m_nodesAmount;
 }
 
 
