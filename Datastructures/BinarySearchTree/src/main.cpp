@@ -7,14 +7,13 @@
 int main()
 {
 	BinarySearchTree<int> bs;
-	bs.insert(10);
-	bs.insert(90);
+	bs.insert(15);
 	bs.insert(20);
-	bs.insert(80);
+	bs.insert(25);
 	bs.insert(30);
-	bs.insert(70);
-
-	bs.remove(10);
+	bs.insert(35);
+	
+	auto h = bs.height(bs.root());
 
 	std::cin.get();
 }

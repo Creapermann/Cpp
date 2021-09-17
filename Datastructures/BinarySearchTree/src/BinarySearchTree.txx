@@ -52,6 +52,12 @@ std::size_t BinarySearchTree<T>::totalNodes() const
 	return m_nodesAmount;
 }
 
+template<typename T>
+std::shared_ptr<Node<T>> BinarySearchTree<T>::root()
+{
+	return m_root;
+}
+
 
 /// <summary>
 /// Recursivly get to the right location and insert the new Node. Dont insert anything if a
@@ -149,6 +155,12 @@ void BinarySearchTree<T>::remove(const T& toRemove)
 	{
 		auto parent = find_parent_of(toRemove);
 
+		if (!parent)
+		{
+			m_root = nullptr;
+			return;
+		}
+
 		if (parent->left->data() == toRemove)
 			parent->left = nullptr;
 		else
@@ -212,8 +224,12 @@ std::shared_ptr<Node<T>> BinarySearchTree<T>::find(const T& toFind) const
 /// </summary>
 /// <typeparam name="T"></typeparam>
 template<typename T>
-std::shared_ptr<Node<T>> find_parent_of_helper(std::shared_ptr<Node<T>> ptr, const T& toFind)
+std::shared_ptr<Node<T>> find_parent_of_helper(std::shared_ptr<Node<T>> ptr, const T& toFind, const std::shared_ptr<Node<T>> root)
 {
+	// Searched for parent -> no parent
+	if (toFind == root->data())
+		return nullptr;
+
 	// Found
 	if(ptr->left && ptr->left->data() == toFind)
 		return ptr;
@@ -225,13 +241,13 @@ std::shared_ptr<Node<T>> find_parent_of_helper(std::shared_ptr<Node<T>> ptr, con
 	{
 		if (!ptr->right)		// Doesnt exist
 			return nullptr;
-		return find_parent_of_helper(ptr->right, toFind);
+		return find_parent_of_helper(ptr->right, toFind, root);
 	}
 	if (toFind < ptr->data())
 	{
 		if (!ptr->left)		// Doesnt exist
 			return nullptr;
-		return find_parent_of_helper(ptr->left, toFind);
+		return find_parent_of_helper(ptr->left, toFind, root);
 	}
 
 	throw std::runtime_error("Unknown error occured");
@@ -241,5 +257,5 @@ std::shared_ptr<Node<T>> find_parent_of_helper(std::shared_ptr<Node<T>> ptr, con
 template<typename T>
 std::shared_ptr<Node<T>> BinarySearchTree<T>::find_parent_of(const T& toFind) const
 {
-	return find_parent_of_helper(m_root, toFind);
+	return find_parent_of_helper(m_root, toFind, m_root);
 }

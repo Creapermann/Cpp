@@ -33,8 +33,9 @@ public:
 	BinarySearchTree();
 	BinarySearchTree(std::initializer_list<T> init_list);
 
-	std::size_t height(std::shared_ptr<Node<T>> from = m_root) const;
+	std::size_t height(std::shared_ptr<Node<T>> from) const;
 	std::size_t totalNodes() const;
+	std::shared_ptr<Node<T>> root();
 
 	void insert(const T& toInsert);
 	void remove(const T& toRemove);
