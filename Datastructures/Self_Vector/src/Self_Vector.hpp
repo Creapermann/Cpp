@@ -1,3 +1,6 @@
+// Notes:
+// Intentionally implemented with raw pointers for practise purposes
+
 #pragma once
 
 #include <array>
