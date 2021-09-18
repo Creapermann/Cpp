@@ -231,7 +231,7 @@ template<typename T>
 std::shared_ptr<Node<T>> find_parent_of_helper(std::shared_ptr<Node<T>> ptr, const T& toFind, const std::shared_ptr<Node<T>> root)
 {
 	// Searched for parent -> no parent
-	if (toFind == root->data())
+	if (root == nullptr || toFind == root->data())
 		return nullptr;
 
 	// Found
