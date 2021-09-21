@@ -6,13 +6,15 @@
 template<int size>
 void count_sort(std::array<int, size>& arr)
 {
+    // Get max element
     int max{ 0 };
     for (auto o : arr)
     {
         if (o > max)
             max = o;
     }
-
+ 
+    
     int* index_count_arr = new int[max + 1]{0};
     for (auto o : arr)
     {
