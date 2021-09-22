@@ -39,6 +39,7 @@ int main()
     std::array<int, 7> arr{4, 2, 1, 3, 4, 5, 2};
     count_sort(arr);
 
+    // print array
     for (auto o : arr)
     {
         std::cout << o << " ";
