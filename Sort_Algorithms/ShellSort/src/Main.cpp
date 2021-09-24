@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include <memory>
+#include <iostream>
 #include <array>
 
 

@@ -23,8 +23,8 @@ void printRightPairs(const std::string& inputString) {
 }
 
 
-int main() {
-
+int main() 
+{
 	std::string userInput;
 	std::cin >> userInput;
 
