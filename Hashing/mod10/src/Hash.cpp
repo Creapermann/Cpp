@@ -41,7 +41,6 @@ void Hash::insert(int item)
 int* Hash::find(int item)
 {
 	int position = hash(item);
-
 	if (!m_table[position])
 		return nullptr;
 
