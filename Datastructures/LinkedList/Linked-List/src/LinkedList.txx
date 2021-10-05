@@ -11,7 +11,7 @@ LinkedList<T>::LinkedList()
 }
 
 /// <summary>
-/// Creates a linked-list copy of a vector
+/// Creates a linked-list out of a vector
 /// </summary>
 template<typename T>
 LinkedList<T>::LinkedList(std::vector<T> init_list)
