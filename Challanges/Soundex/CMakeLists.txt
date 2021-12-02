@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(MyApp VERSION 0.0.1)
+project(MyApp VERSION 1.0.0)
 
 enable_testing()
 
-
-# Build
+#build
 set(CMAKE_BUILD_TYPE Debug)
 
 # Language

@@ -2,16 +2,17 @@
 
 
 Soundex::Soundex()
-    : letters_to_remove{'a', 'e', 'i', 'o', 'u', 'y', 'h', 'w'},
+    : 
+      letters_to_remove{'a', 'e', 'i', 'o', 'u', 'y', 'h', 'w'},
       ignored_duplicate_seperator{'h', 'w', 'y'},
-      encode_map{
+      encode_map {
                     {'b', 1}, {'f', 1}, {'p', 1}, {'v', 1},
                     {'c', 2}, {'g', 2}, {'j', 2}, {'k', 2}, {'q', 2}, {'s', 2}, {'x', 2}, {'z', 2},
                     {'d', 3}, {'t', 3},
                     {'l', 4},
                     {'m', 5}, {'n', 5},
                     {'r', 6}
-                }
+                 }
 {
 }
 
@@ -21,10 +22,11 @@ std::string Soundex::encode(const std::string& name) const
     if(name.empty()) return "0000";
     if(contains_vorbidden_characters(name)) throw std::invalid_argument("Name may only contain letters");
     
+    
     std::string result = remove_adjacend_encoded_duplicates(string_to_lower(name));
     
     char first_letter = std::toupper(name.front());
-    result = first_letter + remove_defined_letters(result.substr(1));
+    result = first_letter + remove_vowel_like_letters(result.substr(1));
     
     result = fix_formatting(result);
     
@@ -43,8 +45,9 @@ std::string Soundex::fix_formatting(std::string name) const
     return name.substr(0, 4);
 }
 
-std::string Soundex::remove_defined_letters(const std::string& name) const
+std::string Soundex::remove_vowel_like_letters(const std::string& name) const
 {
+    /* Vowel like letters defined as: a,e,i,o,u,h,w,y */
     std::string result;
     
     for(char letter : name)

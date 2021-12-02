@@ -5,10 +5,12 @@
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Hello world!\n";
+    Soundex soundex;
     
-    Soundex s;
-    s.encode("afhf");
-    
+    for(int i = 1; i < argc; ++i)
+    {
+        std::cout << soundex.encode(argv[i]) << "\n";
+    }
+        
     return 0;
 }

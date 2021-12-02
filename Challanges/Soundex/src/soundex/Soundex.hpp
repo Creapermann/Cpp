@@ -9,12 +9,12 @@
 class Soundex
 {
 public:
-    Soundex();
+    SOUNDEX_EXPORT Soundex();
     SOUNDEX_EXPORT std::string encode(const std::string& name) const;
     
 private:
     std::string fix_formatting(std::string name) const;
-    std::string remove_defined_letters(const std::string& name) const;
+    std::string remove_vowel_like_letters(const std::string& name) const;
     std::string remove_adjacend_encoded_duplicates(const std::string& name) const;
     std::string encode_name(const std::string& name) const;
     
