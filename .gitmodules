@@ -1,3 +1,9 @@
 [submodule "Challanges/Soundex/lib/googletest"]
 	path = Challanges/Soundex/lib/googletest
 	url = https://github.com/google/googletest.git
+[submodule "Challanges/BankAccount/lib/--recurse-submodule"]
+	path = Challanges/BankAccount/lib/--recurse-submodule
+	url = https://github.com/google/googletest.git
+[submodule "Challanges/BankAccount/lib/googletest"]
+	path = Challanges/BankAccount/lib/googletest
+	url = https://github.com/google/googletest.git
