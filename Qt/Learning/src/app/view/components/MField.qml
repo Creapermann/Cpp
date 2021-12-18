@@ -12,6 +12,8 @@ FocusScope {
     property int minXDrag: 0
     property int minYDrag: 0
     
+    property alias positionX: mainRect.x
+    property alias positionY: mainRect.y
     property alias backgroundColor: mainRect.color
     property alias startingText: counterText.text
     property alias fontColor: counterText.color
@@ -30,6 +32,10 @@ FocusScope {
         if(event.key === Qt.Key_Return)
         {
             mainRect.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+        else if(event.key === Qt.Key_Plus)
+        {
+            mainRect.counter++;
         }
     }
     
