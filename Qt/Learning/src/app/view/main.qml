@@ -1,8 +1,9 @@
 import QtQuick
 import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Layouts
 
 import "components"
-
 
 Window
 {
@@ -12,63 +13,151 @@ Window
     visible: true
     title: qsTr("QML Learning")
     
-    
-    Shortcut
+    ColumnLayout
     {
-        sequence: "CTRL+1"
-        onActivated:
+        width: parent.width
+        spacing: 20
+        
+        
+        Item { width: parent.width; height: 50 }
+        
+        
+        Label
         {
-            if(field1.positionX < field2.positionX)
+            id: editableComoBoxLabel
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Choose action")
+            font.pointSize: 20
+            font.bold: true
+        }
+        
+        ComboBox
+        {
+            id: editableComoboBox
+            Layout.alignment: Qt.AlignHCenter
+            editable: true
+            textRole: "text"
+            model: ListModel
             {
-                field2.focus = false;
-                field1.focus = true;
+                id: editableComoBoxList
+                
+                ListElement { text: "Apple"; taste:  "sweet" }
+                ListElement { text: "Banana"; taste: "sweet" }
+                ListElement { text: "Berry"; taste:  "sour" }
+                ListElement { text: "Grape"; taste:  "neutral" }
             }
-            else
+            
+            
+            // Validate new text and replace old text with new text if valid
+            onAccepted:
             {
-                field1.focus = false;
-                field2.focus = true;
+                if(editText === "")
+                    return;
+                if(find(editText, Qt.MatchFixedString) !== -1)
+                    return;
+                
+                editableComoBoxList.set(currentIndex, { text: editText, 
+                                            taste: editableComoBoxList.get(currentIndex).taste });
             }
         }
-    }
-    
-    Shortcut
-    {
-        sequence: "CTRL+2"
-        onActivated:
+        
+        
+        Item { width: parent.width; height: 20 }
+        
+        
+        Label
         {
-            if(field1.positionX > field2.positionX)
+            id: addButtonLabel
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Add new Item")
+            font.pointSize: 20
+            font.bold: true
+        }
+        
+        Row
+        {
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 15
+            
+            Button
             {
-                field2.focus = false;
-                field1.focus = true;
+                id: addButton
+                text: "Add"
+                font.pointSize: 12
+                font.bold: true
+                
+                onClicked:
+                {
+                    if(newItemText.text !== "" && newItemText.text.length >= 2)
+                    {
+                        editableComoBoxList.append({text: newItemText.text, taste: "default"});
+                        newItemText.text = "";
+                    }
+                }
             }
-            else
+            
+            Rectangle
             {
-                field1.focus = false;
-                field2.focus = true;
+                id: newItemTextBackground
+                color: "gray"
+                width:  100
+                height: 30
+                
+                TextEdit
+                {
+                    id: newItemText
+                    width: 100
+                    height: parent.height
+                    textMargin: 5
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: ""
+                    color: "white"
+                    font.pointSize: 12
+                }
             }
         }
-    }
-    
-    
-    MField
-    {
-        id: field1
-        maxXDrag: root.width  - width
-        maxYDrag: root.height - height
-    }
-    
-    MField
-    {
-        id: field2
-        maxXDrag: root.width  - width
-        maxYDrag: root.height - height
-    }
-    
-    
-    
-    Component.onCompleted:
-    {
-        field1.decreaseCounter.connect(field2.decrease)
-        field2.decreaseCounter.connect(field1.decrease)
+        
+        Item { width: parent.width; height: 20 }
+        
+        
+        Label
+        {   
+            id: deletionLabel
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Delete this tiem")
+            color: "red"
+            font.pointSize: 18
+            font.bold: true
+        }
+        
+        MDelayButton
+        {
+            width: 100
+            height: 60
+            Layout.alignment: Qt.AlignHCenter
+            text: editableComoboBox.currentText
+            delay: 1500
+            
+            
+            onCheckedChanged:
+            {
+                if(checked === false && editableComoBoxList.count > 0)
+                {
+                    editableComoBoxList.remove(editableComoboBox.currentIndex);
+                    
+                    if(editableComoboBox.currentIndex === editableComoBoxList.count && 
+                            editableComoboBox.currentIndex !== 0)
+                        editableComoboBox.decrementCurrentIndex();
+                }
+            }
+        }
+        
+        Item { width: parent.width; height: 10 }
+        
+        BusyIndicator
+        {
+            Layout.alignment: Qt.AlignHCenter
+        }
+        
     }
 }

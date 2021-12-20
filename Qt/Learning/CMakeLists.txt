@@ -17,7 +17,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 # Deps
-find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
+find_package(Qt6 6.2 COMPONENTS Quick QuickControls2 REQUIRED)
 
 
 
@@ -32,7 +32,8 @@ qt_add_qml_module(appLearning
     VERSION 1.0
     QML_FILES 
         src/app/view/main.qml
-        src/app/view/components/MField.qml
+        src/app/view/components/MButton.qml
+        src/app/view/components/MDelayButton.qml
 )
 
 target_compile_definitions(appLearning
@@ -43,4 +44,5 @@ target_compile_definitions(appLearning
 target_link_libraries(appLearning
                     PRIVATE
                         Qt6::Quick
+                        Qt6::QuickControls2
     )

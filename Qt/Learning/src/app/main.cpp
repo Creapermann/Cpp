@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQuickStyle>
 
 
 int main(int argc, char *argv[])
@@ -7,6 +8,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
             
     QQmlApplicationEngine engine;
+    
+    // Load style
+    QQuickStyle::setStyle("Universal");
+    
     const QUrl url(u"qrc:/Learning/src/app/view/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
