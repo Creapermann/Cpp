@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/resources">
         <file>app/images/qt_picture.png</file>
+        <file>app/images/Refresh_Icon.png</file>
     </qresource>
 </RCC>

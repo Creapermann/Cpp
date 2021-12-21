@@ -33,7 +33,10 @@ qt_add_qml_module(appLearning
     QML_FILES 
         src/app/view/main.qml
         src/app/view/components/MButton.qml
+        src/app/view/components/MComboBox.qml
         src/app/view/components/MDelayButton.qml
+        
+        src/app/view/js/utility.js
 )
 
 target_compile_definitions(appLearning
