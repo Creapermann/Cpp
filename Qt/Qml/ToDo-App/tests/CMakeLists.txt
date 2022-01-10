@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.19)
+
+
+# Language
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+
+
+# Build tests
+add_executable(all_tests
+                        main.cpp
+                        
+                        # to test
+                        ${model_src}
+                        ${controller_src}
+    )
+
+target_link_libraries(all_tests
+                    PRIVATE
+                        gtest
+    )
+
+target_include_directories(all_tests
+                    PRIVATE
+                        ${PROJECT_SOURCE_DIR}/src/model
+                        ${PROJECT_SOURCE_DIR}/src/controller
+    )
+
+
+
+# Automatically execute tests at build time
+add_custom_target(auto_run ALL
+                    COMMAND all_tests
+    )
