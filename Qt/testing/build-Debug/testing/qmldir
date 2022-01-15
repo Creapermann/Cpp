@@ -1,0 +1,4 @@
+module testing
+typeinfo apptesting.qmltypes
+prefer :/testing/
+

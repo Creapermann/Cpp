@@ -1,0 +1,11 @@
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting_automoc_json_extraction.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting_qmltyperegistration.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/all_qmltyperegistrations.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting_other_files.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting_qmllint.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/all_qmllint.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting_tooling.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/edit_cache.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/rebuild_cache.dir
+/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/CMakeFiles/apptesting_autogen.dir

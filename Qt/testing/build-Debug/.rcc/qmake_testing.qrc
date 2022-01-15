@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/testing">
+    <file alias="qmldir">/home/creapermann/Programming/Cpp/Qt/Qml/testing/build-Debug/testing/qmldir</file>
+  </qresource>
+</RCC>
+

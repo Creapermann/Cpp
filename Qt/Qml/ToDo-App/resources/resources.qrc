@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/resources">
-        <file>app/images/plus.png</file>
-        <file>app/images/circle.png</file>
-    </qresource>
-</RCC>

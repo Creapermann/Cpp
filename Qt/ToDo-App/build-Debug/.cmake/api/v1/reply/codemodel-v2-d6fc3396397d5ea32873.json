@@ -1,0 +1,335 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				},
+				{
+					"build" : "_deps/googletest-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build-Debug-b589592d356ee528395b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "build-Debug/_deps/googletest-src"
+				},
+				{
+					"build" : "_deps/googletest-build/googlemock",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googlemock-Debug-c324305b52820af6c063.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "build-Debug/_deps/googletest-src/googlemock",
+					"targetIndexes" : 
+					[
+						11,
+						12,
+						13,
+						14
+					]
+				},
+				{
+					"build" : "_deps/googletest-build/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.googletest-build.googletest-Debug-5504d49aa1441c3a963d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "build-Debug/_deps/googletest-src/googletest",
+					"targetIndexes" : 
+					[
+						15,
+						16,
+						17,
+						18
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Debug-b01f6abb0ab61427ef3b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.19"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						4
+					],
+					"name" : "ToDo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						11,
+						12,
+						13,
+						14
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						15,
+						16,
+						17,
+						18
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-285da5f484879d4de13c.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-936a9d71b225fdc1ba57.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "all_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-all_tests-Debug-f7e2eefaca0e2e3f0615.json",
+					"name" : "all_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "all_tests_autogen::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-all_tests_autogen-Debug-d00baf09d031ff2b499b.json",
+					"name" : "all_tests_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard-Debug-dbdf98093e1a6ae59d3c.json",
+					"name" : "appDashboard",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard_autogen-Debug-30e286e8c804d6154504.json",
+					"name" : "appDashboard_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard_automoc_json_extraction::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard_automoc_json_extraction-Debug-0e3bb4d1650ea84dfd33.json",
+					"name" : "appDashboard_automoc_json_extraction",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard_other_files::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard_other_files-Debug-e3fd7e6c05dff7f809c4.json",
+					"name" : "appDashboard_other_files",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard_qmllint-Debug-c33fc851daa2ec93a417.json",
+					"name" : "appDashboard_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard_qmltyperegistration-Debug-be98b0bf84a4e2977956.json",
+					"name" : "appDashboard_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appDashboard_tooling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appDashboard_tooling-Debug-44727caa382738026b7a.json",
+					"name" : "appDashboard_tooling",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock-Debug-0b880c2752d73e3694e0.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_autogen::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_autogen-Debug-ed8a173a5c8c8ac90b09.json",
+					"name" : "gmock_autogen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_main-Debug-1c09572d68c8188c0dd3.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main_autogen::@0f7bb11d64f3678238c7",
+					"jsonFile" : "target-gmock_main_autogen-Debug-d7b632ec58db12e6b67b.json",
+					"name" : "gmock_main_autogen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest-Debug-8073213f6d610e8090f2.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_autogen::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_autogen-Debug-267a91e8bef9b10ae7de.json",
+					"name" : "gtest_autogen",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_main-Debug-598606439b95a6295554.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main_autogen::@1ea2dfc0605fe3ab2a3f",
+					"jsonFile" : "target-gtest_main_autogen-Debug-c26107c80954a173d9fe.json",
+					"name" : "gtest_main_autogen",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/creapermann/Programming/Cpp/Qt/Qml/ToDo-App/build-Debug",
+		"source" : "/home/creapermann/Programming/Cpp/Qt/Qml/ToDo-App"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

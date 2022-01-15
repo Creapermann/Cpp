@@ -1,0 +1,1 @@
+/usr/bin/g++ -DQT_QML_DEBUG -g -DQT_QML_DEBUG CMakeFiles/all_tests.dir/all_tests_autogen/mocs_compilation.cpp.o CMakeFiles/all_tests.dir/main.cpp.o -o all_tests  ../lib/libgtestd.a 
