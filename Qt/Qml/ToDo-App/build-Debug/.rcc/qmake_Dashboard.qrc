@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/Dashboard">
-    <file alias="qmldir">/home/creapermann/Programming/Cpp/Qt/Qml/ToDo-App/build-Debug/Dashboard/qmldir</file>
-  </qresource>
-</RCC>
-
