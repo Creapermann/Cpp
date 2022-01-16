@@ -1,5 +1,0 @@
-module Dashboard
-typeinfo appDashboard.qmltypes
-prefer :/Dashboard/
-MSidebar 1.0 src/app/view/MSidebar.qml
-

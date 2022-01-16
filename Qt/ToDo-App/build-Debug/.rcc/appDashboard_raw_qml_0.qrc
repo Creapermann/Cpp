@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="/Dashboard/">
-    <file alias="src/app/view/main.qml">/home/creapermann/Programming/Cpp/Qt/Qml/ToDo-App/src/app/view/main.qml</file>
-    <file alias="src/app/view/MSidebar.qml">/home/creapermann/Programming/Cpp/Qt/Qml/ToDo-App/src/app/view/MSidebar.qml</file>
-  </qresource>
-</RCC>
-
