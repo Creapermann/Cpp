@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/resources">
-        <file>app/images/download_arrow_icon.png</file>
-    </qresource>
-</RCC>
