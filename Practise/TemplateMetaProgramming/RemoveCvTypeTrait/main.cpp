@@ -4,35 +4,6 @@
 #include <cxxabi.h>
 
 
-// Integral_constant
-template<typename T, T val>
-struct integral_constant
-{
-    static constexpr T value = val;
-
-    using value_type = T;
-    using type = integral_constant<T, val>;
-
-    constexpr operator value_type() const noexcept
-    {
-        return value;
-    }
-
-    constexpr value_type operator()() const noexcept
-    {
-        return value;
-    }
-};
-
-
-// Bool constants
-template<bool T>
-using bool_constant = integral_constant<bool, T>;
-
-using true_type = bool_constant<true>;
-using false_type = bool_constant<false>;
-
-
 
 // Type identity
 template<typename T>
